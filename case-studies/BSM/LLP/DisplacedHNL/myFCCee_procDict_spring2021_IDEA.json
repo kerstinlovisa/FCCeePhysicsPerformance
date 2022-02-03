@@ -93,6 +93,7 @@
    "p8_noBES_ee_H_Hgg_ecm125": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.3e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
    "p8_noBES_ee_H_Htautau_ecm125": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 6.5e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
    "p8_ee_Zee_ecm91": {"numberOfEvents": 10000000, "sumOfWeights": 10000000, "crossSection": 1462.09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+   "p8_ee_Zee_ecm91_dev": {"numberOfEvents": 10000000, "sumOfWeights": 10000000, "crossSection": 1462.09, "kfactor": 1.0, "matchingEfficiency": 1.0},
    "p8_ee_Zmumu_ecm91": {"numberOfEvents": 10000000, "sumOfWeights": 10000000, "crossSection": 1462.08, "kfactor": 1.0, "matchingEfficiency": 1.0},
    "p8_ee_Ztautau_ecm91": {"numberOfEvents": 10000000, "sumOfWeights": 10000000, "crossSection": 1476.58, "kfactor": 1.0, "matchingEfficiency": 1.0},
    "wzp6_ee_mumuH_mH-lower-100MeV_ecm240": {"numberOfEvents": 1000000, "sumOfWeights": 1000000.0, "crossSection": 0.0067849, "kfactor": 1.0, "matchingEfficiency": 1.0},
