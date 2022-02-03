@@ -157,9 +157,24 @@ def mapEffHistos(denVar, numVar, label, sel, param):
 
 #__________________________________________________________
 def runPlots(var,param,hsignal,hbackgrounds,extralab):
-    legsize = 0.04*(len(hbackgrounds)+len(hsignal))
-    #leg = ROOT.TLegend(0.58,0.86 - legsize,0.86,0.88)
-    leg = ROOT.TLegend(0.18,0.66 - legsize,0.46,0.68)
+    # legsize = 0.04*(len(hsignal)+len(hbackgrounds))
+    # # leg = ROOT.TLegend(0.58,0.86 - legsize,0.86,0.88)
+    # leg = ROOT.TLegend(0.18,0.66 - legsize,0.46,0.68)
+    # leg2=None
+
+    ###Below are settings for separate signal and background legends
+    ###Make sure to also change to leg2.AddEntry(...)
+    legsize = 0.04*(len(hsignal))
+    legsize2 = 0.04*(len(hbackgrounds))
+    leg = ROOT.TLegend(0.10,0.66 - legsize,0.46,0.68)
+    leg2 = ROOT.TLegend(0.58,0.66 - legsize2,0.86,0.68)
+    leg2.SetFillColor(0)
+    leg2.SetFillStyle(0)
+    leg2.SetLineColor(0)
+    leg2.SetShadowColor(10)
+    leg2.SetTextSize(0.035)
+    leg2.SetTextFont(42)
+
     leg.SetFillColor(0)
     leg.SetFillStyle(0)
     leg.SetLineColor(0)
@@ -167,22 +182,23 @@ def runPlots(var,param,hsignal,hbackgrounds,extralab):
     leg.SetTextSize(0.035)
     leg.SetTextFont(42)
 
+    for b in hbackgrounds:
+        # leg.AddEntry(hbackgrounds[b][0],param.legend[b],"f")
+        leg2.AddEntry(hbackgrounds[b][0],param.legend[b],"f")
     for s in hsignal:
         leg.AddEntry(hsignal[s][0],param.legend[s],"l")
-    for b in hbackgrounds:
-        leg.AddEntry(hbackgrounds[b][0],param.legend[b],"f")
  
 
     histos=[]
     colors=[]
 
-    for s in hsignal:
-        histos.append(hsignal[s][0])
-        colors.append(param.colors[s])
-
     for b in hbackgrounds:
         histos.append(hbackgrounds[b][0])
         colors.append(param.colors[b])
+
+    for s in hsignal:
+        histos.append(hsignal[s][0])
+        colors.append(param.colors[s])
 
     intLumiab = param.intLumi/1e+06 
 
@@ -196,17 +212,17 @@ def runPlots(var,param,hsignal,hbackgrounds,extralab):
 
     if 'stack' in param.stacksig:
         if 'lin' in param.yaxis:
-            drawStack(var+"_stack_lin", 'Events', leg, lt, rt, param.formats, param.outdir, False , True , histos, colors, param.ana_tex, extralab)
+            drawStack(var+"_stack_lin", 'Events', leg, lt, rt, param.formats, param.outdir, False , True , histos, colors, param.ana_tex, extralab, leg2)
         if 'log' in param.yaxis:
-            drawStack(var+"_stack_log", 'Events', leg, lt, rt, param.formats, param.outdir, True , True , histos, colors, param.ana_tex, extralab)
+            drawStack(var+"_stack_log", 'Events', leg, lt, rt, param.formats, param.outdir, True , True , histos, colors, param.ana_tex, extralab, leg2)
         if 'lin' not in param.yaxis and 'log' not in param.yaxis:
             print ('unrecognised option in formats, should be [\'lin\',\'log\']'.format(param.formats))
 
     if 'nostack' in param.stacksig:
         if 'lin' in param.yaxis:
-            drawStack(var+"_nostack_lin", 'Events', leg, lt, rt, param.formats, param.outdir, False , False , histos, colors, param.ana_tex, extralab)
+            drawStack(var+"_nostack_lin", 'Events', leg, lt, rt, param.formats, param.outdir, False , False , histos, colors, param.ana_tex, extralab, leg2)
         if 'log' in param.yaxis:
-            drawStack(var+"_nostack_log", 'Events', leg, lt, rt, param.formats, param.outdir, True , False , histos, colors, param.ana_tex, extralab)
+            drawStack(var+"_nostack_log", 'Events', leg, lt, rt, param.formats, param.outdir, True , False , histos, colors, param.ana_tex, extralab, leg2)
         if 'lin' not in param.yaxis and 'log' not in param.yaxis:
             print ('unrecognised option in formats, should be [\'lin\',\'log\']'.format(param.formats))
     if 'stack' not in param.stacksig and 'nostack' not in param.stacksig:
@@ -262,7 +278,7 @@ def runEffPlots(denVar,numVar,param,hsignal,hbackgrounds,extralab):
 
 
 #_____________________________________________________________________________________________________________
-def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, logY, stacksig, histos, colors, ana_tex, extralab):
+def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, logY, stacksig, histos, colors, ana_tex, extralab, legend2=None):
 
     canvas = ROOT.TCanvas(name, name, 600, 600) 
     canvas.SetLogy(logY)
@@ -405,9 +421,16 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
             #
             #histos[0].SetMaximum(highY)
             #histos[0].SetMinimum(lowY)
-            histos[0].SetMaximum(100)
-            #histos[0].SetMinimum(0.001)
-            histos[0].SetMinimum(0.00001)
+            # histos[0].SetMaximum(100)      # plots normalized to 1
+            # histos[0].SetMinimum(0.00001)
+            histos[0].SetMaximum(1e30)     # background plots normalized with cross-section and integrated luminosity
+            # histos[0].SetMinimum(1e5)
+            # histos[0].SetMaximum(100)      # signal plots normalized with cross-section and integrated luminosity
+            histos[0].SetMinimum(1e-7)
+            # histos[0].SetMaximum(1e9)      # background plots with unweighted events (100 000 total events)
+            # histos[0].SetMinimum(0)
+            # histos[0].SetMaximum(1e7)      # signal plots with unweighted events (50 000 total events)
+            # histos[0].SetMinimum(1)
         else:
             histos[0].SetMaximum(1.5*maxh)
             histos[0].SetMinimum(0.)
@@ -455,7 +478,7 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
     if not stacksig:
         if logY:
             maxh=200.*maxh/ROOT.gPad.GetUymax()
-            histos[0].SetMaximum(5000)
+            # histos[0].SetMaximum(1e25)
         else:
             histos[0].SetMaximum(2.3*maxh)         
         histos[0].Draw("histe")
@@ -467,14 +490,17 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
         
     #legend.SetTextFont(font) 
     legend.Draw()
-     
+    if legend2 != None:
+        legend2.Draw()
+    
+    pave = ROOT.TPaveText(0.63,0.38,0.88,0.68,"ndc") #7 entries
     #pave = ROOT.TPaveText(0.63,0.42,0.88,0.68,"ndc") #6 entries
     #pave = ROOT.TPaveText(0.63,0.46,0.88,0.68,"ndc") #5 entries
     #pave = ROOT.TPaveText(0.63,0.5,0.88,0.68,"ndc") #4 entries
     #pave = ROOT.TPaveText(0.63,0.54,0.88,0.68,"ndc") #3 entries
     #pave = ROOT.TPaveText(0.63,0.46,0.88,0.68,"ndc") #5 entries
     #pave = ROOT.TPaveText(0.63,0.5,0.88,0.68,"ndc") #4 entries
-    pave = ROOT.TPaveText(0.63,0.54,0.88,0.68,"ndc") #3 entries
+    #pave = ROOT.TPaveText(0.63,0.54,0.88,0.68,"ndc") #3 entries
     pave.SetFillColor(0)
     pave.SetBorderSize(0)
     for m,s in zip(mean, stdDev):
