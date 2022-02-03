@@ -13,9 +13,9 @@ inputDir       = 'read_EDM4HEP/'
 #formats        = ['png','pdf']
 formats        = ['pdf']
 yaxis          = ['lin','log']
-#stacksig       = ['stack','nostack']
 stacksig       = ['nostack']
 outdir         = 'plots/'
+splitLeg       = False
 
 variables = [
 

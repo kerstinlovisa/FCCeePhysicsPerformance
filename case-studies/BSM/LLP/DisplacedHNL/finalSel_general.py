@@ -10,15 +10,20 @@ intLumi = 150e6 #pb^-1
 ###Link to the dictonary that contains all the cross section informations etc...
 procDict = "myFCCee_procDict_spring2021_IDEA.json"
 process_list=[
+    'HNL_eenu_30GeV_1p41e-6Ve',
+    # 'HNL_eenu_50GeV_1p41e-6Ve',
+    # 'HNL_eenu_70GeV_1p41e-6Ve',
+    'HNL_eenu_90GeV_1p41e-6Ve',
+
     'p8_ee_Zee_ecm91',
     'p8_ee_Zbb_ecm91',
     'p8_ee_Ztautau_ecm91',
     'p8_ee_Zcc_ecm91',
     'p8_ee_Zuds_ecm91',
-    'HNL_eenu_30GeV_1p41e-6Ve',
-    # 'HNL_eenu_50GeV_1p41e-6Ve',
-    # 'HNL_eenu_70GeV_1p41e-6Ve',
-    'HNL_eenu_90GeV_1p41e-6Ve',
+
+    #'p8_ee_Zee_ecm91_dev',
+    #'test_Zee_for_Juliette',
+    #'test_Zee_for_Juliette_v2',
 ]
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
@@ -27,11 +32,12 @@ cut_list = {
     #"sel1":"zed_leptonic_m.size() == 1 && zed_leptonic_m[0] > 80 &&  zed_leptonic_m[0] < 100"
     "selNone": "n_RecoTracks > -1",
     "sel1FSGenEle": "n_FSGenElectron>0",
+    "sel1FSGenEle_eeInvMassGt80": "n_FSGenElectron>0 && FSGen_ee_invMass >80",
     "sel1FSGenNu": "n_FSGenNeutrino>0",
     "sel2RecoEle": "n_RecoElectrons==2",
     "sel2RecoEle_vetoes": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0",
     "sel2RecoEle_absD0Gt0p1": "n_RecoElectrons==2 && RecoElectronTrack_absD0[0]>0.1 && RecoElectronTrack_absD0[1]>0.1", #both electrons displaced
-    "sel2RecoEle_chi2Gt0p1": "n_RecoElectrons==2 && RecoDecayVertex.chi2>0.1", #displaced vertex
+    "sel2RecoEle_chi2Gt0p1": "n_RecoElectrons==2 && RecoDecayVertex.chi2>0.1", #good vertex
     "sel2RecoEle_chi2Gt0p1_LxyzGt1": "n_RecoElectrons==2 && RecoDecayVertex.chi2>0.1 && Reco_Lxyz>1", #displaced vertex
     "sel2RecoEle_vetoes_MissingEnergyGt10": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10", #missing energy > 10 GeV
     "sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10 && RecoElectronTrack_absD0[0]>0.5 && RecoElectronTrack_absD0[1]>0.5", #both electrons displaced
@@ -129,6 +135,7 @@ variables = {
     "RecoElectron_charge":   {"name":"RecoElectron_charge",   "title":"Reco electron charge",       "bin":3, "xmin":-1.5,"xmax":1.5},
 
     "RecoElectronTrack_absD0":             {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
+    "RecoElectronTrack_absD0_med":         {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":10},
     "RecoElectronTrack_absD0_prompt":      {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
     "RecoElectronTrack_absZ0":             {"name":"RecoElectronTrack_absZ0",     "title":"Reco electron tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
     "RecoElectronTrack_absZ0_prompt":      {"name":"RecoElectronTrack_absZ0",     "title":"Reco electron tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},

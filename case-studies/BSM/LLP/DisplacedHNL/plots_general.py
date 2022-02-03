@@ -16,9 +16,9 @@ inputDir       = 'read_EDM4HEP/'
 #formats        = ['png','pdf']
 formats        = ['pdf']
 yaxis          = ['lin','log']
-#stacksig       = ['stack','nostack']
 stacksig       = ['nostack']
 outdir         = 'plots_general/'
+splitLeg       = True
 
 variables = [
 
@@ -105,6 +105,7 @@ variables = [
     "RecoElectron_charge",
 
     "RecoElectronTrack_absD0",
+    "RecoElectronTrack_absD0_med",
     "RecoElectronTrack_absD0_prompt",
     "RecoElectronTrack_absZ0",
     "RecoElectronTrack_absZ0_prompt",
@@ -180,6 +181,7 @@ selections = {}
 selections['HNL']  = [
     "selNone",
     "sel1FSGenEle",
+    "sel1FSGenEle_eeInvMassGt80",
     "sel1FSGenNu",
     "sel2RecoEle",
     "sel2RecoEle_vetoes",
@@ -191,6 +193,7 @@ selections['HNL']  = [
 extralabel = {}
 extralabel['selNone'] = "No selection"
 extralabel['sel1FSGenEle'] = "Selection: At least 1 final state gen electron"
+extralabel['sel1FSGenEle_eeInvMassGt80'] = "Selection: At least 1 final state gen electron, gen ee inv mass > 80 GeV"
 extralabel['sel1FSGenNu'] = "Selection: At least 1 final state gen neutrino"
 extralabel['sel2RecoEle'] = "Selection: Exactly 2 reco electrons"
 extralabel['sel2RecoEle_vetoes'] = "Selection: Exactly 2 reco electrons; No reco muons, jets, or photons"
@@ -199,17 +202,18 @@ extralabel['sel2RecoEle_vetoes_MissingEnergyGt10'] = "Selection: Exactly 2 reco 
 extralabel['sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5'] = "Selection: Exactly 2 reco electrons with |d_0|>0.5 mm; No reco muons, jets, or photons; Missing energy > 10 GeV"
 
 colors = {}
+colors['HNL_eenu_30GeV_1p41e-6Ve'] = ROOT.kOrange
+# colors['HNL_eenu_50GeV_1p41e-6Ve'] = ROOT.kRed
+# colors['HNL_eenu_70GeV_1p41e-6Ve'] = ROOT.kBlue
+colors['HNL_eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+2
 colors['Zee'] = ROOT.kBlack
+#colors['Zee_dev'] = ROOT.kRed
+#colors['test_Zee_for_Juliette'] = ROOT.kBlue
+#colors['test_Zee_for_Juliette_v2'] = ROOT.kMagenta
 colors['Zbb'] = ROOT.kRed
 colors['Ztautau'] = ROOT.kBlue
 colors['Zcc'] = ROOT.kMagenta
 colors['Zuds'] = ROOT.kCyan
-# colors['HNL_eenu_30GeV_1p41e-6Ve'] = ROOT.kBlack
-# colors['HNL_eenu_50GeV_1p41e-6Ve'] = ROOT.kRed
-# colors['HNL_eenu_70GeV_1p41e-6Ve'] = ROOT.kBlue
-# colors['HNL_eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+2
-colors['HNL_eenu_30GeV_1p41e-6Ve'] = ROOT.kOrange
-colors['HNL_eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+2
 
 
 plots = {}
@@ -221,6 +225,9 @@ plots['HNL'] = {'signal':{
 },
                 'backgrounds':{
                     'Zee':['p8_ee_Zee_ecm91'],
+                    #'Zee_dev':['p8_ee_Zee_ecm91_dev'],
+                    #'test_Zee_for_Juliette':['test_Zee_for_Juliette'],
+                    #'test_Zee_for_Juliette_v2':['test_Zee_for_Juliette_v2'],
                     'Zbb':['p8_ee_Zbb_ecm91'],
                     'Ztautau': ['p8_ee_Ztautau_ecm91'],
                     'Zcc': ['p8_ee_Zcc_ecm91'],
@@ -230,13 +237,18 @@ plots['HNL'] = {'signal':{
 
 
 legend = {}
+legend['HNL_eenu_30GeV_1p41e-6Ve'] = 'm_{N} = 30 GeV, V_{e} = 1.41e-6'
+# legend['HNL_eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6'
+# legend['HNL_eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, V_{e} = 1.41e-6'
+legend['HNL_eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
+
 legend['Zee'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee'
 legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
 legend['Ztautau'] = 'e^{+}e^{-} #rightarrow Z #rightarrow #tau#tau'
 legend['Zcc'] = 'e^{+}e^{-} #rightarrow Z #rightarrow cc'
 legend['Zuds'] = 'e^{+}e^{-} #rightarrow Z #rightarrow uds'
 
-legend['HNL_eenu_30GeV_1p41e-6Ve'] = 'm_{N} = 30 GeV, V_{e} = 1.41e-6'
-# legend['HNL_eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6'
-# legend['HNL_eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, V_{e} = 1.41e-6'
-legend['HNL_eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
+#legend['Zee'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee, spring 2021 sample'
+#legend['Zee_dev'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee, dev sample'
+#legend['test_Zee_for_Juliette'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee, before overlap removal'
+#legend['test_Zee_for_Juliette_v2'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee, before iso'

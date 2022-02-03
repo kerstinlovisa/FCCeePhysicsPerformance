@@ -152,6 +152,7 @@ class analysis():
 		#ELECTRONS AND MUONS
 		#TODO: ADD EXPLANATION OF THE EXTRA STEPS
 		.Alias("Electron0", "Electron#0.index")
+		#.Alias("Electron0", "AllElectron#0.index") #before isolation applied
 		.Define("RecoElectrons",  "ReconstructedParticle::get(Electron0, ReconstructedParticles)")
 		.Define("n_RecoElectrons",  "ReconstructedParticle::get_n(RecoElectrons)") #count how many electrons are in the event in total
 
@@ -262,6 +263,12 @@ class analysis():
                 .Define("Reco_ee_py", "if (n_RecoElectrons>1) return (RecoElectron_py.at(0) + RecoElectron_py.at(1)); else return float(-1.);")
                 .Define("Reco_ee_pz", "if (n_RecoElectrons>1) return (RecoElectron_pz.at(0) + RecoElectron_pz.at(1)); else return float(-1.);")
                 .Define("Reco_ee_invMass", "if (n_RecoElectrons>1) return sqrt(Reco_ee_energy*Reco_ee_energy - Reco_ee_px*Reco_ee_px - Reco_ee_py*Reco_ee_py - Reco_ee_pz*Reco_ee_pz ); else return float(-1.);")
+
+
+
+                #### try to match reco electrons to gen electrons
+                #.Define("MatchedRecoElectrons",  "ReconstructedParticle2MC::selRP_PDG(11,true)(MCRecoAssociations0,MCRecoAssociations1,RecoElectrons,FSGenElectron)")
+                #.Define("n_MatchedRecoElectrons",  "ReconstructedParticle::get_n(MatchedRecoElectrons)")
 
                )
 
@@ -384,6 +391,8 @@ class analysis():
                         "RecoMissingEnergy_eta",
                         "RecoMissingEnergy_theta",
                         "RecoMissingEnergy_phi",
+
+                        #"n_MatchedRecoElectrons",
 
                         # enunu branches
                         "FSGen_ee_invMass",
