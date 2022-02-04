@@ -28,9 +28,9 @@ process_list=[
     #'HNL_eenu_10GeV_0p1Ve',
 
     'HNL_eenu_20GeV_0p1Ve_withBothAntiNu',
-    'HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes',
+    'HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2',
     'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu',
-    'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes',
+    'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2',
 ]
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file

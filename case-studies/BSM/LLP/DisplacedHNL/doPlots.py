@@ -71,7 +71,7 @@ def mapHistos(var, label, sel, param):
                     print ('no scale background, using 1')
                 if scale != 0.:
                     hh.Scale(scale)
-                print('entries ', hh.GetEntries())
+                #print('entries ', hh.GetEntries())
                 #hh.Scale(param.intLumi)
                 if len(hbackgrounds[b])==0:
                     hbackgrounds[b].append(hh)
@@ -198,6 +198,7 @@ def runPlots(var,param,hsignal,hbackgrounds,extralab,splitLeg):
     colors=[]
 
     nsig=len(hsignal)
+    nbkg=len(hbackgrounds)
 
     for s in hsignal:
         histos.append(hsignal[s][0])
@@ -219,17 +220,17 @@ def runPlots(var,param,hsignal,hbackgrounds,extralab,splitLeg):
 
     if 'stack' in param.stacksig:
         if 'lin' in param.yaxis:
-            drawStack(var+"_stack_lin", 'Events', leg, lt, rt, param.formats, param.outdir, False , True , histos, colors, param.ana_tex, extralab, nsig, leg2)
+            drawStack(var+"_stack_lin", 'Events', leg, lt, rt, param.formats, param.outdir, False , True , histos, colors, param.ana_tex, extralab, nsig, nbkg, leg2)
         if 'log' in param.yaxis:
-            drawStack(var+"_stack_log", 'Events', leg, lt, rt, param.formats, param.outdir, True , True , histos, colors, param.ana_tex, extralab, nsig, leg2)
+            drawStack(var+"_stack_log", 'Events', leg, lt, rt, param.formats, param.outdir, True , True , histos, colors, param.ana_tex, extralab, nsig, nbkg, leg2)
         if 'lin' not in param.yaxis and 'log' not in param.yaxis:
             print ('unrecognised option in formats, should be [\'lin\',\'log\']'.format(param.formats))
 
     if 'nostack' in param.stacksig:
         if 'lin' in param.yaxis:
-            drawStack(var+"_nostack_lin", 'Events', leg, lt, rt, param.formats, param.outdir, False , False , histos, colors, param.ana_tex, extralab, nsig, leg2)
+            drawStack(var+"_nostack_lin", 'Events', leg, lt, rt, param.formats, param.outdir, False , False , histos, colors, param.ana_tex, extralab, nsig, nbkg, leg2)
         if 'log' in param.yaxis:
-            drawStack(var+"_nostack_log", 'Events', leg, lt, rt, param.formats, param.outdir, True , False , histos, colors, param.ana_tex, extralab, nsig, leg2)
+            drawStack(var+"_nostack_log", 'Events', leg, lt, rt, param.formats, param.outdir, True , False , histos, colors, param.ana_tex, extralab, nsig, nbkg, leg2)
         if 'lin' not in param.yaxis and 'log' not in param.yaxis:
             print ('unrecognised option in formats, should be [\'lin\',\'log\']'.format(param.formats))
     if 'stack' not in param.stacksig and 'nostack' not in param.stacksig:
@@ -285,7 +286,7 @@ def runEffPlots(denVar,numVar,param,hsignal,hbackgrounds,extralab):
 
 
 #_____________________________________________________________________________________________________________
-def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, logY, stacksig, histos, colors, ana_tex, extralab, nsig, legend2=None):
+def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, logY, stacksig, histos, colors, ana_tex, extralab, nsig, nbkg, legend2=None):
 
     canvas = ROOT.TCanvas(name, name, 600, 600) 
     canvas.SetLogy(logY)
@@ -332,29 +333,31 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
     hStackBkg = ROOT.THStack("hstackbkg","")
 
     # first plot backgrounds
-    histos[nsig].SetLineWidth(0)
-    histos[nsig].SetLineColor(ROOT.kBlack)
-    histos[nsig].SetFillColor(colors[nsig])
-    hStack.Add(histos[nsig])
-    hStackBkg.Add(histos[nsig])
+    if(nbkg>0):
+        histos[nsig].SetLineWidth(0)
+        histos[nsig].SetLineColor(ROOT.kBlack)
+        histos[nsig].SetFillColor(colors[nsig])
+        hStack.Add(histos[nsig])
+        hStackBkg.Add(histos[nsig])
     
-    # now loop over other background (skipping first)
-    iterh = iter(histos)
-    for i in range(nsig):
+        # now loop over other background (skipping first)
+        iterh = iter(histos)
+        for i in range(nsig):
+            next(iterh)
         next(iterh)
-    next(iterh)
     
-    k = nsig+1
-    for h in iterh:
-       h.SetLineWidth(0)
-       h.SetLineColor(ROOT.kBlack)
-       h.SetFillColor(colors[k])
-       hStack.Add(h)
-       hStackBkg.Add(h)
-       k += 1
+        k = nsig+1
+        for h in iterh:
+            h.SetLineWidth(0)
+            h.SetLineColor(ROOT.kBlack)
+            h.SetFillColor(colors[k])
+            hStack.Add(h)
+            hStackBkg.Add(h)
+            k += 1
 
-    if not stacksig:
-       hStack.Draw("hist")
+        if not stacksig:
+            hStack.Draw("hist")
+        #print("hStack is: "+str(hStack))
 
     # define stacked signal histo
     hStackSig = ROOT.THStack("hstacksig","")
@@ -367,73 +370,112 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
             hStack.Add(histos[l])
         else:
             hStackSig.Add(histos[l])
+            #print("hStackSig is: "+str(hStackSig))
 
     if stacksig:
         hStack.Draw("hist")
 
-    hStack.GetXaxis().SetTitle(xlabel)
-    hStack.GetYaxis().SetTitle(ylabel)
+    #print("stacksig is: "+str(stacksig))
+    #print("nbkg is: "+str(nbkg))
+    #print("hStackSig is: "+str(hStackSig))
+    #print("xlabel is: "+xlabel)
+    if (not stacksig) and nbkg==0:
+        hStackSig.Draw("hist nostack")
+        hStackSig.GetXaxis().SetTitle(xlabel)
+        hStackSig.GetYaxis().SetTitle(ylabel)
 
-    hStack.GetYaxis().SetTitleOffset(1.45)
-    hStack.GetXaxis().SetTitleOffset(1.3)
+        hStackSig.GetYaxis().SetTitleOffset(1.45)
+        hStackSig.GetXaxis().SetTitleOffset(1.3)
+    else:
+        hStack.GetXaxis().SetTitle(xlabel)
+        hStack.GetYaxis().SetTitle(ylabel)
+
+        hStack.GetYaxis().SetTitleOffset(1.45)
+        hStack.GetXaxis().SetTitleOffset(1.3)
 
     lowY=0.
     if logY:
         highY=200.*maxh/ROOT.gPad.GetUymax()
         threshold=0.5
-        bin_width=hStack.GetXaxis().GetBinWidth(1)
+        if (not stacksig) and nbkg==0:
+            bin_width=hStackSig.GetXaxis().GetBinWidth(1)
+        else:
+            bin_width=hStack.GetXaxis().GetBinWidth(1)
         lowY=threshold*bin_width
-        #hStack.SetMaximum(highY)
-        #hStack.SetMinimum(lowY)
-        #hStack.SetMaximum(100)      # plots normalized to 1
-        #hStack.SetMinimum(0.00001)
-        hStack.SetMaximum(1e30)     # background plots normalized with cross-section and integrated luminosity
-        #hStack.SetMinimum(1e5)
-        #hStack.SetMaximum(100)      # signal plots normalized with cross-section and integrated luminosity
-        hStack.SetMinimum(1e-7)
-        #hStack.SetMaximum(1e9)      # background plots with unweighted events (100 000 total events)
-        #hStack.SetMinimum(0)
-        #hStack.SetMaximum(1e7)      # signal plots with unweighted events (50 000 total events)
-        #hStack.SetMinimum(1)
-        #hStack.SetMaximum(1e25)
+        if (not stacksig) and nbkg==0:
+            #hStackSig.SetMaximum(highY)
+            #hStackSig.SetMinimum(lowY)
+            #hStackSig.SetMaximum(100)      # plots normalized to 1
+            #hStackSig.SetMinimum(0.00001)
+            hStackSig.SetMaximum(1e30)     # background plots normalized with cross-section and integrated luminosity
+            #hStackSig.SetMinimum(1e5)
+            #hStackSig.SetMaximum(100)      # signal plots normalized with cross-section and integrated luminosity
+            hStackSig.SetMinimum(1e-7)
+            #hStackSig.SetMaximum(1e9)      # background plots with unweighted events (100 000 total events)
+            #hStackSig.SetMinimum(0)
+            #hStackSig.SetMaximum(1e7)      # signal plots with unweighted events (50 000 total events)
+            #hStackSig.SetMinimum(1)
+            #hStackSig.SetMaximum(1e25)
+        else:
+            #hStack.SetMaximum(highY)
+            #hStack.SetMinimum(lowY)
+            #hStack.SetMaximum(100)      # plots normalized to 1
+            #hStack.SetMinimum(0.00001)
+            hStack.SetMaximum(1e30)     # background plots normalized with cross-section and integrated luminosity
+            #hStack.SetMinimum(1e5)
+            #hStack.SetMaximum(100)      # signal plots normalized with cross-section and integrated luminosity
+            hStack.SetMinimum(1e-7)
+            #hStack.SetMaximum(1e9)      # background plots with unweighted events (100 000 total events)
+            #hStack.SetMinimum(0)
+            #hStack.SetMaximum(1e7)      # signal plots with unweighted events (50 000 total events)
+            #hStack.SetMinimum(1)
+            #hStack.SetMaximum(1e25)
 
     else:
-        hStack.SetMaximum(1.5*maxh)
-        hStack.SetMinimum(0.)
+        if (not stacksig) and nbkg==0:
+            hStackSig.SetMaximum(1.5*maxh)
+            hStackSig.SetMinimum(0.)
+        else:
+            hStack.SetMaximum(1.5*maxh)
+            hStack.SetMinimum(0.)
 
-    escape_scale_Xaxis=True
-    hStacklast = hStack.GetStack().Last()
-    lowX_is0=True
-    lowX=hStacklast.GetBinCenter(1)-(hStacklast.GetBinWidth(1)/2.)
-    highX_ismax=False
-    highX=hStacklast.GetBinCenter(hStacklast.GetNbinsX())+(hStacklast.GetBinWidth(1)/2.)
+    if(nbkg>0):
+        escape_scale_Xaxis=True
+        hStacklast = hStack.GetStack().Last()
+        lowX_is0=True
+        lowX=hStacklast.GetBinCenter(1)-(hStacklast.GetBinWidth(1)/2.)
+        highX_ismax=False
+        highX=hStacklast.GetBinCenter(hStacklast.GetNbinsX())+(hStacklast.GetBinWidth(1)/2.)
 
-    if escape_scale_Xaxis==False:
-      for i_bin in range( 1, hStacklast.GetNbinsX()+1 ):
-         bkg_val=hStacklast.GetBinContent(i_bin)
-         sig_val=histos[0].GetBinContent(i_bin)
-         if bkg_val/maxh>0.1 and i_bin<15 and lowX_is0==True:
-           lowX_is0=False
-           lowX=hStacklast.GetBinCenter(i_bin)-(hStacklast.GetBinWidth(i_bin)/2.)
+        if escape_scale_Xaxis==False:
+            for i_bin in range( 1, hStacklast.GetNbinsX()+1 ):
+                bkg_val=hStacklast.GetBinContent(i_bin)
+                sig_val=histos[0].GetBinContent(i_bin)
+                if bkg_val/maxh>0.1 and i_bin<15 and lowX_is0==True:
+                    lowX_is0=False
+                    lowX=hStacklast.GetBinCenter(i_bin)-(hStacklast.GetBinWidth(i_bin)/2.)
 
-         val_to_compare=bkg_val
-         if sig_val>bkg_val : val_to_compare=sig_val
-         if val_to_compare<lowY and i_bin>15 and highX_ismax==False:
-           highX_ismax=True
-           highX=hStacklast.GetBinCenter(i_bin)+(hStacklast.GetBinWidth(i_bin)/2.)
-           highX*=1.1
-    # protections
-    if lowX<hStacklast.GetBinCenter(1)-(hStacklast.GetBinWidth(1)/2.) :
-      lowX=hStacklast.GetBinCenter(1)-(hStacklast.GetBinWidth(1)/2.)
-    if highX>hStacklast.GetBinCenter(hStacklast.GetNbinsX())+(hStacklast.GetBinWidth(1)/2.) :
-      highX=hStacklast.GetBinCenter(hStacklast.GetNbinsX())+(hStacklast.GetBinWidth(1)/2.)
-    if lowX>=highX :
-      lowX=hStacklast.GetBinCenter(1)-(hStacklast.GetBinWidth(1)/2.)
-      highX=hStacklast.GetBinCenter(hStacklast.GetNbinsX())+(hStacklast.GetBinWidth(1)/2.)
-    hStack.GetXaxis().SetLimits(int(lowX),int(highX))
+            val_to_compare=bkg_val
+            if sig_val>bkg_val : val_to_compare=sig_val
+            if val_to_compare<lowY and i_bin>15 and highX_ismax==False:
+                highX_ismax=True
+                highX=hStacklast.GetBinCenter(i_bin)+(hStacklast.GetBinWidth(i_bin)/2.)
+                highX*=1.1
+            # protections
+            if lowX<hStacklast.GetBinCenter(1)-(hStacklast.GetBinWidth(1)/2.) :
+                lowX=hStacklast.GetBinCenter(1)-(hStacklast.GetBinWidth(1)/2.)
+            if highX>hStacklast.GetBinCenter(hStacklast.GetNbinsX())+(hStacklast.GetBinWidth(1)/2.) :
+                highX=hStacklast.GetBinCenter(hStacklast.GetNbinsX())+(hStacklast.GetBinWidth(1)/2.)
+            if lowX>=highX :
+                lowX=hStacklast.GetBinCenter(1)-(hStacklast.GetBinWidth(1)/2.)
+                highX=hStacklast.GetBinCenter(hStacklast.GetNbinsX())+(hStacklast.GetBinWidth(1)/2.)
+            hStack.GetXaxis().SetLimits(int(lowX),int(highX))
 
     if not stacksig:
-        hStackSig.Draw("same hist nostack")
+        if nbkg>0:
+            hStackSig.Draw("same hist nostack")
+        else:
+            hStackSig.Draw("hist nostack")
 
     legend.Draw()
     if legend2 != None:
