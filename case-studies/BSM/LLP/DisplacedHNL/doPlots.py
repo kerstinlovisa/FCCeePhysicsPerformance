@@ -13,6 +13,10 @@ def removekey(d, key):
     del r[key]
     return r
 
+def sortedDictValues(dic):
+    keys = sorted(dic)
+    return [dic[key] for key in keys]
+
 #__________________________________________________________
 def mapHistos(var, label, sel, param):
     print ('run plots for var:{}     label:{}     selection:{}'.format(var,label,sel))
@@ -331,14 +335,20 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
     # define stacked histo
     hStack    = ROOT.THStack("hstack","")
     hStackBkg = ROOT.THStack("hstackbkg","")
+    BgMCHistYieldsDic = {}
 
     # first plot backgrounds
     if(nbkg>0):
         histos[nsig].SetLineWidth(0)
         histos[nsig].SetLineColor(ROOT.kBlack)
         histos[nsig].SetFillColor(colors[nsig])
-        hStack.Add(histos[nsig])
-        hStackBkg.Add(histos[nsig])
+
+        #put histograms in a dictionary according to their yields
+        if histos[nsig].Integral()>0:
+            BgMCHistYieldsDic[histos[nsig].Integral()] = histos[nsig]
+        # for empty histograms, put them as having negative yields (so multiple ones don't overwrite each other in the dictionary)
+        else:
+            BgMCHistYieldsDic[-1*nbkg] = histos[nsig]
     
         # now loop over other background (skipping first)
         iterh = iter(histos)
@@ -351,13 +361,20 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
             h.SetLineWidth(0)
             h.SetLineColor(ROOT.kBlack)
             h.SetFillColor(colors[k])
+            if h.Integral()>0:
+                BgMCHistYieldsDic[h.Integral()] = h
+            else:
+                BgMCHistYieldsDic[-1*nbkg] = h
+            k += 1
+
+        # sort stack by yields (smallest to largest)
+        BgMCHistYieldsDic = sortedDictValues(BgMCHistYieldsDic)
+        for h in BgMCHistYieldsDic:
             hStack.Add(h)
             hStackBkg.Add(h)
-            k += 1
 
         if not stacksig:
             hStack.Draw("hist")
-        #print("hStack is: "+str(hStack))
 
     # define stacked signal histo
     hStackSig = ROOT.THStack("hstacksig","")
@@ -370,15 +387,10 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
             hStack.Add(histos[l])
         else:
             hStackSig.Add(histos[l])
-            #print("hStackSig is: "+str(hStackSig))
 
     if stacksig:
         hStack.Draw("hist")
 
-    #print("stacksig is: "+str(stacksig))
-    #print("nbkg is: "+str(nbkg))
-    #print("hStackSig is: "+str(hStackSig))
-    #print("xlabel is: "+xlabel)
     if (not stacksig) and nbkg==0:
         hStackSig.Draw("hist nostack")
         hStackSig.GetXaxis().SetTitle(xlabel)
@@ -405,12 +417,12 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
         if (not stacksig) and nbkg==0:
             #hStackSig.SetMaximum(highY)
             #hStackSig.SetMinimum(lowY)
-            #hStackSig.SetMaximum(100)      # plots normalized to 1
-            #hStackSig.SetMinimum(0.00001)
-            hStackSig.SetMaximum(1e30)     # background plots normalized with cross-section and integrated luminosity
+            hStackSig.SetMaximum(100)      # plots normalized to 1
+            hStackSig.SetMinimum(0.00001)
+            #hStackSig.SetMaximum(1e30)     # background plots normalized with cross-section and integrated luminosity
             #hStackSig.SetMinimum(1e5)
             #hStackSig.SetMaximum(100)      # signal plots normalized with cross-section and integrated luminosity
-            hStackSig.SetMinimum(1e-7)
+            #hStackSig.SetMinimum(1e-7)
             #hStackSig.SetMaximum(1e9)      # background plots with unweighted events (100 000 total events)
             #hStackSig.SetMinimum(0)
             #hStackSig.SetMaximum(1e7)      # signal plots with unweighted events (50 000 total events)
