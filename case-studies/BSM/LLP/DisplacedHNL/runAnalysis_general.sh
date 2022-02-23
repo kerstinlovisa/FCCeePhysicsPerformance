@@ -21,7 +21,9 @@ python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/s
 
 ########################################################### signals ######################################################################
 # private signal samples
-python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_90GeV_1p41e-6Ve.root
+# python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_90GeV_1p41e-6Ve.root
 #python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_70GeV_1p41e-6Ve.root
 #python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_50GeV_1p41e-6Ve.root
-python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_30GeV_1p41e-6Ve.root
+# python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_30GeV_1p41e-6Ve.root
+python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_30GeV_1e-5Ve.root
+python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_40GeV_1e-5Ve.root
