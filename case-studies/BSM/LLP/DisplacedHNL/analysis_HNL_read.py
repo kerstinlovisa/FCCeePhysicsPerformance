@@ -275,6 +275,9 @@ class analysis():
                 # Definition: Lxy = math.sqrt( (branchGenPtcl.At(daut1).X)**2 + (branchGenPtcl.At(daut1).Y)**2 )  
                 .Define("GenHNL_Lxy", "return sqrt(GenHNLElectron_vertex_x*GenHNLElectron_vertex_x + GenHNLElectron_vertex_y*GenHNLElectron_vertex_y)")
                 .Define("GenHNL_Lxyz","return sqrt(GenHNLElectron_vertex_x*GenHNLElectron_vertex_x + GenHNLElectron_vertex_y*GenHNLElectron_vertex_y + GenHNLElectron_vertex_z*GenHNLElectron_vertex_z)")
+
+                .Define("GenHNL_Lxyz_boost", "return GenHNL_Lxyz*GenHNL_mass/GenHNL_p")
+                .Define("GenHNL_Lxy_boost", "return GenHNL_Lxy*GenHNL_mass/GenHNL_pt")
                 
                 # Calculating the lifetime of the HNL
                 # Definition: t = Lxy * branchGenPtcl.At(i).Mass / (branchGenPtcl.At(i).PT * 1000 * 3E8)
@@ -600,6 +603,8 @@ class analysis():
                         "GenHNL_Lxyz",
                         "GenHNL_lifetime_xy",
                         "GenHNL_lifetime_xyz",
+                        "GenHNL_Lxyz_boost",
+                        "GenHNL_Lxy_boost",
                         ######## Reconstructed particles #######
                         "n_RecoTracks",
                         "RecoHNLParticles",

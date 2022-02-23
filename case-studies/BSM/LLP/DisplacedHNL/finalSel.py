@@ -324,8 +324,9 @@ NUM_CPUS = 2
 ###Produce TTrees
 DO_TREE=False
 DO_SCALE=True
+SAVE_TABULAR=False
 
 ###This part is standard to all analyses
 import config.runDataFrameFinal as rdf
 myana=rdf.runDataFrameFinal(baseDir,procDict,process_list,cut_list,variables,intLumi)
-myana.run(ncpu=NUM_CPUS, doTree=DO_TREE, doScale=DO_SCALE)
+myana.run(ncpu=NUM_CPUS, doTree=DO_TREE, doScale=DO_SCALE, saveTabular=SAVE_TABULAR)

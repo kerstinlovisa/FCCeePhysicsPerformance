@@ -10,10 +10,13 @@ intLumi = 150e6 #pb^-1
 ###Link to the dictonary that contains all the cross section informations etc...
 procDict = "myFCCee_procDict_spring2021_IDEA.json"
 process_list=[
-    'HNL_eenu_30GeV_1p41e-6Ve',
+    # 'HNL_eenu_30GeV_1p41e-6Ve',
     # 'HNL_eenu_50GeV_1p41e-6Ve',
     # 'HNL_eenu_70GeV_1p41e-6Ve',
-    'HNL_eenu_90GeV_1p41e-6Ve',
+    # 'HNL_eenu_90GeV_1p41e-6Ve',
+    
+    # 'HNL_eenu_40GeV_1e-5Ve',
+    # 'HNL_eenu_30GeV_1e-5Ve',
 
     'p8_ee_Zee_ecm91',
     'p8_ee_Zbb_ecm91',
@@ -31,17 +34,18 @@ process_list=[
 cut_list = {
     #"sel1":"zed_leptonic_m.size() == 1 && zed_leptonic_m[0] > 80 &&  zed_leptonic_m[0] < 100"
     "selNone": "n_RecoTracks > -1",
-    "sel1FSGenEle": "n_FSGenElectron>0",
-    "sel1FSGenEle_eeInvMassGt80": "n_FSGenElectron>0 && FSGen_ee_invMass >80",
-    "sel1FSGenNu": "n_FSGenNeutrino>0",
+    # "sel1FSGenEle": "n_FSGenElectron>0",
+    # "sel1FSGenEle_eeInvMassGt80": "n_FSGenElectron>0 && FSGen_ee_invMass >80",
+    # "sel1FSGenNu": "n_FSGenNeutrino>0",
     "sel2RecoEle": "n_RecoElectrons==2",
     "sel2RecoEle_vetoes": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0",
-    "sel2RecoEle_absD0Gt0p1": "n_RecoElectrons==2 && RecoElectronTrack_absD0[0]>0.1 && RecoElectronTrack_absD0[1]>0.1", #both electrons displaced
-    "sel2RecoEle_chi2Gt0p1": "n_RecoElectrons==2 && RecoDecayVertex.chi2>0.1", #good vertex
-    "sel2RecoEle_chi2Gt0p1_LxyzGt1": "n_RecoElectrons==2 && RecoDecayVertex.chi2>0.1 && Reco_Lxyz>1", #displaced vertex
+    # "sel2RecoEle_absD0Gt0p1": "n_RecoElectrons==2 && RecoElectronTrack_absD0[0]>0.1 && RecoElectronTrack_absD0[1]>0.1", #both electrons displaced
+    # "sel2RecoEle_chi2Gt0p1": "n_RecoElectrons==2 && RecoDecayVertex.chi2>0.1", #good vertex
+    # "sel2RecoEle_chi2Gt0p1_LxyzGt1": "n_RecoElectrons==2 && RecoDecayVertex.chi2>0.1 && Reco_Lxyz>1", #displaced vertex
     "sel2RecoEle_vetoes_MissingEnergyGt10": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10", #missing energy > 10 GeV
+    # "sel2RecoEle_vetoes_absD0Gt0p5": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoElectronTrack_absD0[0]>0.5 && RecoElectronTrack_absD0[1]>0.5", #both electrons displaced
     "sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10 && RecoElectronTrack_absD0[0]>0.5 && RecoElectronTrack_absD0[1]>0.5", #both electrons displaced
-    "sel2RecoEle_vetoes_MissingEnergyGt10_chi2Gt1_LxyzGt5": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10 && RecoDecayVertex.chi2>1 && Reco_Lxyz>5", #displaced vertex
+    # "sel2RecoEle_vetoes_MissingEnergyGt10_chi2Gt1_LxyzGt5": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10 && RecoDecayVertex.chi2>1 && Reco_Lxyz>5", #displaced vertex
 }
 
 
@@ -207,8 +211,9 @@ NUM_CPUS = 2
 ###Produce TTrees
 DO_TREE=False
 DO_SCALE=True
+SAVE_TABULAR=True
 
 ###This part is standard to all analyses
 import config.runDataFrameFinal as rdf
 myana=rdf.runDataFrameFinal(baseDir,procDict,process_list,cut_list,variables,intLumi)
-myana.run(ncpu=NUM_CPUS, doTree=DO_TREE, doScale=DO_SCALE)
+myana.run(ncpu=NUM_CPUS, doTree=DO_TREE, doScale=DO_SCALE, saveTabular=SAVE_TABULAR)
