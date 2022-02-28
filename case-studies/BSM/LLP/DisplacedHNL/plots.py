@@ -323,12 +323,13 @@ colors = {}
 #colors['HNL_eenu_15GeV_1p41e-6Ve'] = ROOT.kBlue
 #colors['HNL_eenu_20GeV_1p41e-6Ve'] = ROOT.kMagenta
 #colors['HNL_eenu_20GeV_0p1Ve'] = ROOT.kRed
-colors['HNL_eenu_20GeV_0p1Ve_withBothAntiNu'] = ROOT.kMagenta
-colors['HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2'] = ROOT.kRed
-colors['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'] = ROOT.kCyan
-colors['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = ROOT.kBlue
+# colors['HNL_eenu_20GeV_0p1Ve_withBothAntiNu'] = ROOT.kMagenta
+# colors['HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2'] = ROOT.kRed
+# colors['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'] = ROOT.kCyan
+# colors['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = ROOT.kBlue
 
 
+colors['HNL_eenu_30GeV_1e-5Ve'] = ROOT.kGreen+1
 #colors['HNL_eenu_30GeV_1p41e-6Ve'] = ROOT.kBlack
 #colors['HNL_eenu_40GeV_1p41e-6Ve'] = ROOT.kRed
 #colors['HNL_eenu_50GeV_1p41e-6Ve'] = ROOT.kRed
@@ -351,10 +352,11 @@ plots['HNL'] = {'signal':{
     #'HNL_eenu_15GeV_1p41e-6Ve':['HNL_eenu_15GeV_1p41e-6Ve'],
     #'HNL_eenu_20GeV_1p41e-6Ve':['HNL_eenu_20GeV_1p41e-6Ve'],
     #'HNL_eenu_20GeV_0p1Ve':['HNL_eenu_20GeV_0p1Ve'],
-    'HNL_eenu_20GeV_0p1Ve_withBothAntiNu':['HNL_eenu_20GeV_0p1Ve_withBothAntiNu'],
-    'HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2'],
-    'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu':['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'],
-    'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'],
+    # 'HNL_eenu_20GeV_0p1Ve_withBothAntiNu':['HNL_eenu_20GeV_0p1Ve_withBothAntiNu'],
+    # 'HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2'],
+    # 'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu':['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'],
+    # 'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'],
+    'HNL_eenu_30GeV_1e-5Ve':['HNL_eenu_30GeV_1e-5Ve'],
     #'HNL_eenu_30GeV_1p41e-6Ve':['HNL_eenu_30GeV_1p41e-6Ve'],
     #'HNL_eenu_40GeV_1p41e-6Ve':['HNL_eenu_40GeV_1p41e-6Ve'],
     #'HNL_eenu_50GeV_1p41e-6Ve':['HNL_eenu_50GeV_1p41e-6Ve'],
@@ -382,10 +384,11 @@ legend = {}
 #legend['HNL_eenu_15GeV_1p41e-6Ve'] = 'm_{N} = 15 GeV, V_{e} = 1.41e-6'
 #legend['HNL_eenu_20GeV_1p41e-6Ve'] = 'm_{N} = 20 GeV, V_{e} = 1.41e-6'
 #legend['HNL_eenu_20GeV_0p1Ve'] = 'm_{N} = 20 GeV, V_{e} = 0.1'
-legend['HNL_eenu_20GeV_0p1Ve_withBothAntiNu'] = 'm_{N} = 20 GeV, V_{e} = 0.1, Delphes 3.4.2'
-legend['HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 20 GeV, V_{e} = 0.1, Delphes 3.5.1.pre01'
-legend['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6, Delphes 3.4.2'
-legend['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6, Delphes 3.5.1.pre01'
+# legend['HNL_eenu_20GeV_0p1Ve_withBothAntiNu'] = 'm_{N} = 20 GeV, V_{e} = 0.1, Delphes 3.4.2'
+# legend['HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 20 GeV, V_{e} = 0.1, Delphes 3.5.1.pre01'
+# legend['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6, Delphes 3.4.2'
+# legend['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6, Delphes 3.5.1.pre01'
+legend['HNL_eenu_30GeV_1e-5Ve'] = 'm_{N} = 30 GeV, V_{e} = 1e-5'
 #legend['HNL_eenu_30GeV_1p41e-6Ve'] = 'm_{N} = 30 GeV, V_{e} = 1.41e-6'
 #legend['HNL_eenu_40GeV_1p41e-6Ve'] = 'm_{N} = 40 GeV, V_{e} = 1.41e-6'
 #legend['HNL_eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6'

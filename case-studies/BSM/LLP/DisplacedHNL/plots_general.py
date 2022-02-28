@@ -180,48 +180,54 @@ effPlots = {
 selections = {}
 selections['HNL']  = [
     "selNone",
-    "sel1FSGenEle",
-    "sel1FSGenEle_eeInvMassGt80",
-    "sel1FSGenNu",
+    # "sel1FSGenEle",
+    # "sel1FSGenEle_eeInvMassGt80",
+    # "sel1FSGenNu",
     "sel2RecoEle",
     "sel2RecoEle_vetoes",
-    "sel2RecoEle_absD0Gt0p1",
+    # "sel2RecoEle_absD0Gt0p1",
     "sel2RecoEle_vetoes_MissingEnergyGt10",
+    # "sel2RecoEle_vetoes_absD0Gt0p5",
     "sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5",
 ]
 
 extralabel = {}
 extralabel['selNone'] = "No selection"
-extralabel['sel1FSGenEle'] = "Selection: At least 1 final state gen electron"
-extralabel['sel1FSGenEle_eeInvMassGt80'] = "Selection: At least 1 final state gen electron, gen ee inv mass > 80 GeV"
-extralabel['sel1FSGenNu'] = "Selection: At least 1 final state gen neutrino"
+# extralabel['sel1FSGenEle'] = "Selection: At least 1 final state gen electron"
+# extralabel['sel1FSGenEle_eeInvMassGt80'] = "Selection: At least 1 final state gen electron, gen ee inv mass > 80 GeV"
+# extralabel['sel1FSGenNu'] = "Selection: At least 1 final state gen neutrino"
 extralabel['sel2RecoEle'] = "Selection: Exactly 2 reco electrons"
 extralabel['sel2RecoEle_vetoes'] = "Selection: Exactly 2 reco electrons; No reco muons, jets, or photons"
-extralabel['sel2RecoEle_absD0Gt0p1'] = "Selection: Exactly 2 reco electrons with |d_0|>0.1 mm"
+# extralabel['sel2RecoEle_absD0Gt0p1'] = "Selection: Exactly 2 reco electrons with |d_0|>0.1 mm"
 extralabel['sel2RecoEle_vetoes_MissingEnergyGt10'] = "Selection: Exactly 2 reco electrons; No reco muons, jets, or photons; Missing energy > 10 GeV"
+# extralabel['sel2RecoEle_vetoes_absD0Gt0p5'] = "Selection: Exactly 2 reco electrons with |d_0|>0.1 mm; No reco muons, jets, or photons"
 extralabel['sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5'] = "Selection: Exactly 2 reco electrons with |d_0|>0.5 mm; No reco muons, jets, or photons; Missing energy > 10 GeV"
 
 colors = {}
-colors['HNL_eenu_30GeV_1p41e-6Ve'] = ROOT.kOrange
+# colors['HNL_eenu_30GeV_1p41e-6Ve'] = ROOT.kOrange+1
 # colors['HNL_eenu_50GeV_1p41e-6Ve'] = ROOT.kRed
 # colors['HNL_eenu_70GeV_1p41e-6Ve'] = ROOT.kBlue
-colors['HNL_eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+2
-colors['Zee'] = ROOT.kBlack
+# colors['HNL_eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+1
+
+colors['HNL_eenu_30GeV_1e-5Ve'] = ROOT.kGreen+1
+
+colors['Zee'] = ROOT.kGray+2
 #colors['Zee_dev'] = ROOT.kRed
 #colors['test_Zee_for_Juliette'] = ROOT.kBlue
 #colors['test_Zee_for_Juliette_v2'] = ROOT.kMagenta
-colors['Zbb'] = ROOT.kRed
-colors['Ztautau'] = ROOT.kBlue
-colors['Zcc'] = ROOT.kMagenta
-colors['Zuds'] = ROOT.kCyan
-
+colors['Zbb'] = ROOT.kAzure-4
+colors['Ztautau'] = ROOT.kRed-3
+colors['Zcc'] = ROOT.kCyan-9
+colors['Zuds'] = ROOT.kViolet-4
 
 plots = {}
 plots['HNL'] = {'signal':{
-                    'HNL_eenu_30GeV_1p41e-6Ve':['HNL_eenu_30GeV_1p41e-6Ve'],
+                    # 'HNL_eenu_30GeV_1p41e-6Ve':['HNL_eenu_30GeV_1p41e-6Ve'],
                     # 'HNL_eenu_50GeV_1p41e-6Ve':['HNL_eenu_50GeV_1p41e-6Ve'],
                     # 'HNL_eenu_70GeV_1p41e-6Ve':['HNL_eenu_70GeV_1p41e-6Ve'],
-                    'HNL_eenu_90GeV_1p41e-6Ve':['HNL_eenu_90GeV_1p41e-6Ve'],
+                    # 'HNL_eenu_90GeV_1p41e-6Ve':['HNL_eenu_90GeV_1p41e-6Ve'],
+
+                    'HNL_eenu_30GeV_1e-5Ve':['HNL_eenu_30GeV_1e-5Ve'],
 },
                 'backgrounds':{
                     'Zee':['p8_ee_Zee_ecm91'],
@@ -237,10 +243,12 @@ plots['HNL'] = {'signal':{
 
 
 legend = {}
-legend['HNL_eenu_30GeV_1p41e-6Ve'] = 'm_{N} = 30 GeV, V_{e} = 1.41e-6'
+# legend['HNL_eenu_30GeV_1p41e-6Ve'] = 'm_{N} = 30 GeV, V_{e} = 1.41e-6'
 # legend['HNL_eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6'
 # legend['HNL_eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, V_{e} = 1.41e-6'
-legend['HNL_eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
+# legend['HNL_eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
+
+legend['HNL_eenu_30GeV_1e-5Ve']  = 'm_{N} = 30 GeV, V_{e} = 1e-5'
 
 legend['Zee'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee'
 legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
