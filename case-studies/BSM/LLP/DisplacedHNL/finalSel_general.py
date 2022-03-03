@@ -14,13 +14,16 @@ process_list=[
     # 'HNL_eenu_50GeV_1p41e-6Ve',
     # 'HNL_eenu_70GeV_1p41e-6Ve',
     # 'HNL_eenu_90GeV_1p41e-6Ve',
-    
-    # 'HNL_eenu_40GeV_1e-5Ve',
+
+    # 'HNL_eenu_10GeV_2e-4Ve',
+    # 'HNL_eenu_20GeV_9e-5Ve',
+    # 'HNL_eenu_20GeV_3e-5Ve',
     # 'HNL_eenu_30GeV_1e-5Ve',
+    # 'HNL_eenu_50GeV_6e-6Ve',
 
     'p8_ee_Zee_ecm91',
-    'p8_ee_Zbb_ecm91',
     'p8_ee_Ztautau_ecm91',
+    'p8_ee_Zbb_ecm91',
     'p8_ee_Zcc_ecm91',
     'p8_ee_Zuds_ecm91',
 
@@ -48,6 +51,13 @@ cut_list = {
     # "sel2RecoEle_vetoes_MissingEnergyGt10_chi2Gt1_LxyzGt5": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10 && RecoDecayVertex.chi2>1 && Reco_Lxyz>5", #displaced vertex
 }
 
+cut_labels = {
+    "selNone": "Before selection",
+    "sel2RecoEle": "Exactly 2 reco e",
+    "sel2RecoEle_vetoes": "Vetoes",
+    "sel2RecoEle_vetoes_MissingEnergyGt10": "$\\not\\! p >$ 10 GeV",
+    "sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5": "$|d_0| >$ 0.5 mm",
+}
 
 ###Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
 
@@ -215,5 +225,5 @@ SAVE_TABULAR=True
 
 ###This part is standard to all analyses
 import config.runDataFrameFinal as rdf
-myana=rdf.runDataFrameFinal(baseDir,procDict,process_list,cut_list,variables,intLumi)
+myana=rdf.runDataFrameFinal(baseDir,procDict,process_list,cut_list,variables,intLumi,cut_labels=cut_labels)
 myana.run(ncpu=NUM_CPUS, doTree=DO_TREE, doScale=DO_SCALE, saveTabular=SAVE_TABULAR)

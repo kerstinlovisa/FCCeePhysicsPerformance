@@ -25,5 +25,8 @@ python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/s
 #python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_70GeV_1p41e-6Ve.root
 #python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_50GeV_1p41e-6Ve.root
 # python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_30GeV_1p41e-6Ve.root
+python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_10GeV_2e-4Ve.root
+python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_20GeV_9e-5Ve.root
+python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_20GeV_3e-5Ve.root
 python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_30GeV_1e-5Ve.root
-python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_40GeV_1e-5Ve.root
+python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_50GeV_6e-6Ve.root
