@@ -209,7 +209,11 @@ colors = {}
 # colors['HNL_eenu_70GeV_1p41e-6Ve'] = ROOT.kBlue
 # colors['HNL_eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+1
 
-colors['HNL_eenu_30GeV_1e-5Ve'] = ROOT.kGreen+1
+# colors['HNL_eenu_10GeV_2e-4Ve'] = ROOT.kYellow
+# colors['HNL_eenu_20GeV_9e-5Ve'] = ROOT.kBlue
+# colors['HNL_eenu_20GeV_3e-5Ve'] = ROOT.kRed
+# colors['HNL_eenu_30GeV_1e-5Ve'] = ROOT.kGreen+1
+# colors['HNL_eenu_50GeV_6e-6Ve'] = ROOT.kOrange+1
 
 colors['Zee'] = ROOT.kGray+2
 #colors['Zee_dev'] = ROOT.kRed
@@ -227,7 +231,11 @@ plots['HNL'] = {'signal':{
                     # 'HNL_eenu_70GeV_1p41e-6Ve':['HNL_eenu_70GeV_1p41e-6Ve'],
                     # 'HNL_eenu_90GeV_1p41e-6Ve':['HNL_eenu_90GeV_1p41e-6Ve'],
 
-                    'HNL_eenu_30GeV_1e-5Ve':['HNL_eenu_30GeV_1e-5Ve'],
+                    # 'HNL_eenu_10GeV_2e-4Ve':['HNL_eenu_10GeV_2e-4Ve'],
+                    # 'HNL_eenu_20GeV_9e-5Ve':['HNL_eenu_20GeV_9e-5Ve'],
+                    # 'HNL_eenu_20GeV_3e-5Ve':['HNL_eenu_20GeV_3e-5Ve'],
+                    # 'HNL_eenu_30GeV_1e-5Ve':['HNL_eenu_30GeV_1e-5Ve'],
+                    # 'HNL_eenu_50GeV_6e-6Ve':['HNL_eenu_50GeV_6e-6Ve'],
 },
                 'backgrounds':{
                     'Zee':['p8_ee_Zee_ecm91'],
@@ -248,7 +256,11 @@ legend = {}
 # legend['HNL_eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, V_{e} = 1.41e-6'
 # legend['HNL_eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
 
-legend['HNL_eenu_30GeV_1e-5Ve']  = 'm_{N} = 30 GeV, V_{e} = 1e-5'
+# legend['HNL_eenu_10GeV_2e-4Ve'] = 'm_{N} = 10 GeV, V_{e} = 2e-4'
+# legend['HNL_eenu_20GeV_9e-5Ve'] = 'm_{N} = 20 GeV, V_{e} = 9e-5'
+# legend['HNL_eenu_20GeV_3e-5Ve'] = 'm_{N} = 20 GeV, V_{e} = 3e-5'
+# legend['HNL_eenu_30GeV_1e-5Ve'] = 'm_{N} = 30 GeV, V_{e} = 1e-5'
+# legend['HNL_eenu_50GeV_6e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 6e-6'
 
 legend['Zee'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee'
 legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
