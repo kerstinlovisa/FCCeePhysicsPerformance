@@ -220,6 +220,8 @@ def runPlots(var,param,hsignal,hbackgrounds,extralab,splitLeg):
 
     if 'ee' in param.collider:
         lt = "FCC-ee Simulation (Delphes)"
+
+        #rt = "#sqrt{{s}} = {:.1f} GeV".format(param.energy) #if scaleSig==1.
         rt = "#sqrt{{s}} = {:.1f} GeV,   L = {:.0f} ab^{{-1}}".format(param.energy,intLumiab)
 
     if 'stack' in param.stacksig:
@@ -419,6 +421,8 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
             #hStackSig.SetMinimum(lowY)
             hStackSig.SetMaximum(100)      # plots normalized to 1
             hStackSig.SetMinimum(0.00001)
+            #hStackSig.SetMaximum(3000)      # plots normalized to 1
+            #hStackSig.SetMinimum(0.001)
             #hStackSig.SetMaximum(1e30)     # background plots normalized with cross-section and integrated luminosity
             #hStackSig.SetMinimum(1e5)
             #hStackSig.SetMaximum(100)      # signal plots normalized with cross-section and integrated luminosity
@@ -523,6 +527,7 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
 
     rightText = re.split(",", rightText)
     text = '#bf{#it{' + rightText[0] +'}}'
+    #text = '#bf{#it{' + rightText +'}}' #use if scaleSig==1
     
     Text.SetTextAlign(12)
     Text.SetNDC(ROOT.kTRUE)
