@@ -311,6 +311,15 @@ class analysis():
                 .Define("GenHNL_epipigamma_pz", "return (GenHNLElectron_pz + GenHNLPiPlusMinus_pz + GenHNLPiZero_pz + GenHNLPhoton_pz)")
                 .Define("GenHNL_epipigamma_invMass", "return sqrt(GenHNL_epipigamma_energy*GenHNL_epipigamma_energy - GenHNL_epipigamma_px*GenHNL_epipigamma_px - GenHNL_epipigamma_py*GenHNL_epipigamma_py - GenHNL_epipigamma_pz*GenHNL_epipigamma_pz )")
 
+                # Delta R between the two GenHNLElectrons:
+                .Define("GenHNLElectrons_deltaR", "MCParticle::DeltaRBetweenTwoMCParticles(GenHNLElectron,GenHNLElectron2)")
+                .Define()
+                .Define("GenHNLElectrons_deltaR1", "MCParticle::DeltaRBetweenTwoMCParticles1(GenHNLElectron,GenHNLElectron2)")
+                .Define("GenHNLElectrons_deltaR1", "MCParticle::DeltaRBetweenTwoMCParticles1(GenHNLElectron,GenHNLElectron2)")
+                .Define("GenHNLElectrons_delta_eta", "return abs(GenHNLElectron2_eta-GenHNLElectron_eta)")
+                .Define("GenHNLElectrons_delta_theta", "return abs(GenHNLElectron2_theta-GenHNLElectron_theta)")
+                .Define("GenHNLElectrons_deltaR_2", "return sqrt(GenHNLElectrons_delta_eta*GenHNLElectrons_delta_eta + GenHNLElectrons_delta_theta*GenHNLElectrons_delta_theta)")
+
                 # Vertexing studies
                 # Finding the vertex of the mother particle HNL using decicated Bs method
                 .Define("GenHNLMCDecayVertex",   "BsMCDecayVertex( GenHNL_indices, Particle )")
@@ -321,6 +330,11 @@ class analysis():
 
                 # Reconstructed particles
                 # Returns the RecoParticles associated with the HNL decay products
+
+		.Alias("Electron0", "Electron#0.index")
+                .Define("RecoHNLElectrons",  "ReconstructedParticle2MC::selRP_ele_matched_to_list( GenHNL_indices, MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,Electron0)")
+                .Define("n_RecoHNLElectrons",  "ReconstructedParticle::get_n(RecoHNLElectrons)")
+
                 .Define("RecoHNLParticles",  "ReconstructedParticle2MC::selRP_matched_to_list( GenHNL_indices, MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle)")
                 # Reconstructing the tracks from the HNL
                 .Define("RecoHNLTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoHNLParticles, EFlowTrack_1)")
@@ -348,8 +362,18 @@ class analysis():
                 
                 # We may want to look at the reco'ed HNLs legs: in the RecoHNLParticles vector,
                 # the first particle (vector[0]) is the e-, etc :
+		# .Alias("Electron0", "Electron#0.index")
+		# .Define("RecoElectrons",  "ReconstructedParticle::get(Electron0, ReconstructedParticles)")
+
+                # .Define("MCRecoAssociations_ele", "ReconstructedParticle::get(Electron0,MCRecoAssociations0)")
+                # .Define("RecoHNLElectrons", "ReconstructedParticle2MC::selRP_ele_matched_to_list( GenHNL_indices, MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,Electron0)")
+
                 .Define("RecoHNLElectron",   "selRP_leg(0)( RecoHNLParticles )")
+                .Define("RecoHNLElectron_test",   "selRP_leg(0)( RecoHNLElectrons )")
                 .Define("RecoHNLElectron2",   "selRP_leg(1)( RecoHNLParticles )")
+                .Define("RecoHNLElectron2_test",   "selRP_leg(1)( RecoHNLElectrons )")
+                # .Define("RecoHNLElectron", "ReconstructedParticle::get(Electron0, RecoHNLElectron0)")
+                # .Define("RecoHNLElectron2", "ReconstructedParticle::get(Electron0, RecoHNLElectron02)")
                 
                 # reconstruced electron, positron values
                 .Define("RecoHNLElectron_e",  "ReconstructedParticle::get_e( RecoHNLElectron )")
@@ -373,6 +397,9 @@ class analysis():
                 .Define("RecoHNLElectron_charge",  "ReconstructedParticle::get_charge( RecoHNLElectron )")
                 .Define("RecoHNLElectron2_charge",  "ReconstructedParticle::get_charge( RecoHNLElectron2 )")
                 #add dxy, dz, dxyz, and uncertainties
+
+                .Define("RecoHNLElectron_test_p",  "ReconstructedParticle::get_p( RecoHNLElectron_test )")
+                .Define("RecoHNLElectron2_test_p",  "ReconstructedParticle::get_p( RecoHNLElectron2_test )")
 
                 # ee invariant mass
                 .Define("RecoHNL_ee_energy", "return (RecoHNLElectron_e + RecoHNLElectron2_e)")
@@ -406,6 +433,15 @@ class analysis():
                 .Define("GenMinusRecoHNL_DecayVertex_z",  "GenHNLElectron_vertex_z-RecoHNLDecayVertex.position.z")
                 .Define("GenMinusRecoHNL_Lxy", "GenHNL_Lxy-RecoHNL_Lxy")
                 .Define("GenMinusRecoHNL_Lxyz", "GenHNL_Lxyz-RecoHNL_Lxyz")
+
+                .Define("RecoHNLElectrons_deltaR", "ReconstructedParticle::DeltaRBetweenTwoMCParticles(RecoHNLElectron,RecoHNLElectron2)")
+                .Define("RecoHNLElectrons_deltaR_test", "ReconstructedParticle::DeltaRBetweenTwoMCParticles(RecoHNLElectron_test,RecoHNLElectron2_test)")
+
+                .Define("RecoElectron0", "ReconstructedParticle::sel_byIndex(0,RecoHNLElectron)")
+                .Define("RecoElectron1", "ReconstructedParticle::sel_byIndex(0,RecoHNLElectron2)")
+                # .Define("RecoHNLElectrons_deltaR1", "ReconstructedParticle::DeltaRBetweenTwoMCParticles1(RecoHNLElectron,RecoHNLElectron2)")
+
+                .Define("RecoHNLElectrons_DeltaR_diff", "return RecoHNLElectrons_deltaR-RecoHNLElectrons_deltaR_test")
                 
                        
                 ####################################################################################################
@@ -421,7 +457,7 @@ class analysis():
 
 		#ELECTRONS AND MUONS
 		#TODO: ADD EXPLANATION OF THE EXTRA STEPS
-		.Alias("Electron0", "Electron#0.index")
+		# .Alias("Electron0", "Electron#0.index")
 		.Define("RecoElectrons",  "ReconstructedParticle::get(Electron0, ReconstructedParticles)")
 		.Define("n_RecoElectrons",  "ReconstructedParticle::get_n(RecoElectrons)") #count how many electrons are in the event in total
 
@@ -605,9 +641,14 @@ class analysis():
                         "GenHNL_lifetime_xyz",
                         "GenHNL_Lxyz_boost",
                         "GenHNL_Lxy_boost",
+                        "GenHNLElectrons_deltaR",
+                        "GenHNLElectrons_deltaR1",
+                        "GenHNLElectrons_deltaR_2",
                         ######## Reconstructed particles #######
                         "n_RecoTracks",
                         "RecoHNLParticles",
+                        "RecoHNLElectrons",
+                        "n_RecoHNLElectrons",
                         "RecoHNLTracks",
                         "n_RecoHNLTracks",
                         "RecoHNLTracks_absD0",
@@ -620,6 +661,10 @@ class analysis():
                         "RecoHNLDecayVertex",
                         "RecoHNL_Lxy",
                         "RecoHNL_Lxyz",
+                        "RecoHNLElectrons_deltaR",
+                        "RecoHNLElectrons_deltaR_test",
+                        "RecoHNLElectrons_deltaR1",
+                        "RecoHNLElectrons_DeltaR_diff",
                         "RecoHNLElectron_e",
                         "RecoHNLElectron_p",
                         "RecoHNLElectron_pt",
@@ -630,6 +675,8 @@ class analysis():
                         "RecoHNLElectron_theta",
                         "RecoHNLElectron_phi",
                         "RecoHNLElectron_charge",
+                        "RecoHNLElectron_test_p",
+                        "RecoHNLElectron2_test_p",
                         "GenMinusRecoHNLElectron_e",
                         "GenMinusRecoHNLElectron_p",
                         "GenMinusRecoHNLElectron_pt",

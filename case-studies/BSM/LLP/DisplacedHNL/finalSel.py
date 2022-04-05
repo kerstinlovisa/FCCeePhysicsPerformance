@@ -27,10 +27,15 @@ process_list=[
     #'HNL_eenu_20GeV_0p1Ve',
     #'HNL_eenu_10GeV_0p1Ve',
 
-    'HNL_eenu_20GeV_0p1Ve_withBothAntiNu',
-    'HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2',
-    'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu',
-    'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2',
+    'HNL_eenu_5GeV_1e-4Ve',
+    'HNL_eenu_10GeV_1e-4Ve',
+    'HNL_eenu_30GeV_1e-4Ve',
+    'HNL_eenu_50GeV_1e-5Ve',
+
+    # 'HNL_eenu_20GeV_0p1Ve_withBothAntiNu',
+    # 'HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2',
+    # 'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu',
+    # 'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2',
 ]
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
@@ -170,6 +175,8 @@ variables = {
     "GenHNL_ee_invMass":   {"name":"GenHNL_ee_invMass",   "title":"Gen m_{ee} [GeV]",           "bin":100,"xmin":0, "xmax":100},
     "GenHNL_eenu_invMass": {"name":"GenHNL_eenu_invMass", "title":"Gen m_{ee#nu} [GeV]",        "bin":100,"xmin":0, "xmax":100},
 
+    "GenHNLElectrons_deltaR": {"name":"GenHNLElectrons_deltaR", "title":"Gen #Delta R(ee)",        "bin":100,"xmin":0, "xmax":10},
+
     #reco variables
     "n_RecoTracks":                    {"name":"n_RecoTracks",                   "title":"Total number of reco tracks",           "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_RecoHNLTracks":                 {"name":"n_RecoHNLTracks",                "title":"Number of reco HNL tracks",             "bin":5,"xmin":-0.5 ,"xmax":4.5},
@@ -216,6 +223,8 @@ variables = {
     "RecoHNLElectron2_charge":   {"name":"RecoHNLElectron2_charge",   "title":"Reco e^{#font[122]{\55}}_{2} (from HNL) charge",       "bin":3, "xmin":-1.5,"xmax":1.5},
 
     "RecoHNL_ee_invMass":   {"name":"RecoHNL_ee_invMass",   "title":"Reco m_{ee} [GeV]",           "bin":100,"xmin":0, "xmax":100},
+
+    "RecoHNLElectrons_deltaR":   {"name":"RecoHNLElectrons_deltaR",   "title":"Reco #Delta R(ee)",           "bin":100,"xmin":0, "xmax":10},
 
     "n_RecoJets":       {"name":"n_RecoJets",      "title":"Total number of reco jets",         "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_RecoPhotons":    {"name":"n_RecoPhotons",   "title":"Total number of reco photons",      "bin":5,"xmin":-0.5 ,"xmax":4.5},

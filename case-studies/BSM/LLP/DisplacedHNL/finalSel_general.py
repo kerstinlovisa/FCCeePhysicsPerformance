@@ -21,11 +21,17 @@ process_list=[
     # 'HNL_eenu_30GeV_1e-5Ve',
     # 'HNL_eenu_50GeV_6e-6Ve',
 
-    'p8_ee_Zee_ecm91',
-    'p8_ee_Ztautau_ecm91',
-    'p8_ee_Zbb_ecm91',
-    'p8_ee_Zcc_ecm91',
-    'p8_ee_Zuds_ecm91',
+    'HNL_eenu_10GeV_2e-4Ve',
+    'HNL_eenu_20GeV_9e-5Ve',
+    'HNL_eenu_20GeV_3e-5Ve',
+    'HNL_eenu_30GeV_1e-5Ve',
+    'HNL_eenu_50GeV_6e-6Ve',
+
+    # 'p8_ee_Zee_ecm91',
+    # 'p8_ee_Ztautau_ecm91',
+    # 'p8_ee_Zbb_ecm91',
+    # 'p8_ee_Zcc_ecm91',
+    # 'p8_ee_Zuds_ecm91',
 
     #'p8_ee_Zee_ecm91_dev',
     #'test_Zee_for_Juliette',
@@ -87,6 +93,9 @@ variables = {
     "FSGen_Lxy":      {"name":"FSGen_Lxy",      "title":"Gen L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":1000},
     "FSGen_Lxyz":     {"name":"FSGen_Lxyz",     "title":"Gen L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":1000},
     "FSGen_Lxyz_prompt":     {"name":"FSGen_Lxyz",     "title":"Gen L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":10},
+
+    "FSGen_DeltaR":      {"name":"FSGen_DeltaR",      "title":"Gen #Delta R",     "bin":100,"xmin":0 ,"xmax":10},
+
 
     "n_FSGenNeutrino":                   {"name":"n_FSGenNeutrino",                  "title":"Number of final state gen neutrinos",        "bin":5,"xmin":-0.5 ,"xmax":4.5},
 
@@ -171,6 +180,8 @@ variables = {
     "Reco_Lxy":                     {"name":"Reco_Lxy",                    "title":"Reco L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":1000},
     "Reco_Lxyz":                    {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":1000},
     "Reco_Lxyz_prompt":             {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":0.1},
+
+    "Reco_DeltaR":      {"name":"Reco_DeltaR",      "title":"Reco #Delta R",     "bin":100,"xmin":0 ,"xmax":10},
 
     "Reco_ee_invMass":   {"name":"Reco_ee_invMass",   "title":"Reco m_{ee} [GeV]",           "bin":100,"xmin":0, "xmax":100},
 
