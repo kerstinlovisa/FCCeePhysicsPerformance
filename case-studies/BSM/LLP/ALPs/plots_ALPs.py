@@ -9,11 +9,12 @@ energy         = 91
 collider       = 'FCC-ee'
 inputDir       = 'read_EDM4HEP/'
 #formats        = ['png','pdf']
-formats        = ['png']
+formats        = ['pdf']
 yaxis          = ['lin','log']
 #stacksig       = ['stack','nostack']
 stacksig       = ['nostack']
 outdir         = 'plots/'
+splitLeg       = False
 
 variables = [
 
@@ -160,6 +161,8 @@ variables = [
     "RecoALPPhoton1_charge",
     "RecoALPPhoton2_charge",
 
+    "RecoALP_aa_invMass",
+
     "n_RecoJets",
     "n_RecoPhotons",
     "n_RecoElectrons",
@@ -212,6 +215,8 @@ variables = [
     "RecoMissingEnergy_phi",
 ]
 
+effPlots = {}
+
 ###Dictionary with the analysis name as a key, and the list of selections to be plotted for this analysis. The name of the selections should be the same than in the final selection
 selections = {}
 selections['ALP']   = ["selNone"]#,"sel0","sel1"]
@@ -222,18 +227,18 @@ extralabel['selNone'] = "No selection"
 #extralabel['sel1'] = "Selection: At least 1 N, at least 2 reco electrons"
 
 colors = {}
-colors['ALP_Z_aa_1GeV_cYY_0p5'] = ROOT.kRed
+colors['ALP_Z_aa_1GeV_cYY_0p6'] = ROOT.kRed
 colors['ALP_Z_aa_1GeV_cYY_0p9'] = ROOT.kBlue
-colors['ALP_Z_aa_1GeV_cYY_1p0'] = ROOT.kBlack
-colors['ALP_Z_aa_1GeV_cYY_1p5'] = ROOT.kGreen+2
+colors['ALP_Z_aa_1GeV_cYY_1p2'] = ROOT.kBlack
+colors['ALP_Z_aa_1GeV_cYY_1p6'] = ROOT.kGreen+2
 colors['ALP_Z_aa_1GeV_cYY_1p9'] = ROOT.kMagenta
 
 plots = {}
 plots['ALP'] = {'signal':{
-    'ALP_Z_aa_1GeV_cYY_0p5':['ALP_Z_aa_1GeV_cYY_0p5'],
+    'ALP_Z_aa_1GeV_cYY_0p6':['ALP_Z_aa_1GeV_cYY_0p6'],
     'ALP_Z_aa_1GeV_cYY_0p9':['ALP_Z_aa_1GeV_cYY_0p9'],
-    'ALP_Z_aa_1GeV_cYY_1p0':['ALP_Z_aa_1GeV_cYY_1p0'],
-    'ALP_Z_aa_1GeV_cYY_1p5':['ALP_Z_aa_1GeV_cYY_1p5'],
+    'ALP_Z_aa_1GeV_cYY_1p2':['ALP_Z_aa_1GeV_cYY_1p2'],
+    'ALP_Z_aa_1GeV_cYY_1p6':['ALP_Z_aa_1GeV_cYY_1p6'],
     'ALP_Z_aa_1GeV_cYY_1p9':['ALP_Z_aa_1GeV_cYY_1p9'],
 
 },
@@ -246,8 +251,8 @@ plots['ALP'] = {'signal':{
 
 
 legend = {}
-legend['ALP_Z_aa_1GeV_cYY_0p5'] = 'm_{ALP} = 1 GeV, c_{YY} = 0.5'
+legend['ALP_Z_aa_1GeV_cYY_0p6'] = 'm_{ALP} = 1 GeV, c_{YY} = 0.6'
 legend['ALP_Z_aa_1GeV_cYY_0p9'] = 'm_{ALP} = 1 GeV, c_{YY} = 0.9'
-legend['ALP_Z_aa_1GeV_cYY_1p0'] = 'm_{ALP} = 1 GeV, c_{YY} = 1.0'
-legend['ALP_Z_aa_1GeV_cYY_1p5'] = 'm_{ALP} = 1 GeV, c_{YY} = 1.5'
+legend['ALP_Z_aa_1GeV_cYY_1p2'] = 'm_{ALP} = 1 GeV, c_{YY} = 1.2'
+legend['ALP_Z_aa_1GeV_cYY_1p6'] = 'm_{ALP} = 1 GeV, c_{YY} = 1.6'
 legend['ALP_Z_aa_1GeV_cYY_1p9'] = 'm_{ALP} = 1 GeV, c_{YY} = 1.9'
