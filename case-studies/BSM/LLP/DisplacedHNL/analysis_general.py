@@ -134,10 +134,7 @@ class analysis():
                 .Define("FSGen_eenu_invMass", "if (n_FSGenElectron>1 && n_FSGenNeutrino>0) return sqrt(FSGen_eenu_energy*FSGen_eenu_energy - FSGen_eenu_px*FSGen_eenu_px - FSGen_eenu_py*FSGen_eenu_py - FSGen_eenu_pz*FSGen_eenu_pz ); else return float(-1.);")
                 
                 # delta R for two electrons, assuming first two electrons
-                .Define("FSGenElectron0", "MCParticle::sel_byIndex(0,FSGenElectron)")
-                .Define("FSGenElectron1", "MCParticle::sel_byIndex(1,FSGenElectron)")
-                .Define("FSGen_DeltaR", "MCParticle::DeltaRBetweenTwoMCParticles1(FSGenElectron0,FSGenElectron1)")
-
+                .Define("FSGen_DeltaR", "if (n_FSGenElectron>1) return (MCParticle::DeltaRBetweenTwoMCParticles(FSGenElectron.at(0),FSGenElectron.at(1))); else return float(-1.)")
 
                 # MC event primary vertex
                 .Define("MC_PrimaryVertex",  "MCParticle::get_EventPrimaryVertex(21)( Particle )" )
@@ -269,9 +266,7 @@ class analysis():
                 .Define("Reco_ee_invMass", "if (n_RecoElectrons>1) return sqrt(Reco_ee_energy*Reco_ee_energy - Reco_ee_px*Reco_ee_px - Reco_ee_py*Reco_ee_py - Reco_ee_pz*Reco_ee_pz ); else return float(-1.);")
 
                 # delta R between reco electrons
-                .Define("RecoElectron0", "ReconstructedParticle::sel_byIndex(0,RecoElectrons)")
-                .Define("RecoElectron1", "ReconstructedParticle::sel_byIndex(1,RecoElectrons)")
-                .Define("Reco_DeltaR", "if (n_RecoElectrons>1) return (ReconstructedParticle::DeltaRBetweenTwoMCParticles1(RecoElectron0,RecoElectron1)); else return float(-1.)")
+                .Define("Reco_DeltaR", "if (n_RecoElectrons>1) return (ReconstructedParticle::DeltaRBetweenTwoMCParticles(RecoElectrons.at(0),RecoElectrons.at(1))); else return float(-1.)")
 
                 #### try to match reco electrons to gen electrons
                 #.Define("MatchedRecoElectrons",  "ReconstructedParticle2MC::selRP_PDG(11,true)(MCRecoAssociations0,MCRecoAssociations1,RecoElectrons,FSGenElectron)")

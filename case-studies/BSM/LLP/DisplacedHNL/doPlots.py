@@ -419,14 +419,14 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
         if (not stacksig) and nbkg==0:
             #hStackSig.SetMaximum(highY)
             #hStackSig.SetMinimum(lowY)
-            hStackSig.SetMaximum(100)      # plots normalized to 1
-            hStackSig.SetMinimum(0.00001)
+            # hStackSig.SetMaximum(100)      # plots normalized to 1
+            # hStackSig.SetMinimum(0.00001)
             #hStackSig.SetMaximum(3000)      # plots normalized to 1
             #hStackSig.SetMinimum(0.001)
-            #hStackSig.SetMaximum(1e30)     # background plots normalized with cross-section and integrated luminosity
+            hStackSig.SetMaximum(1e30)     # background plots normalized with cross-section and integrated luminosity
             #hStackSig.SetMinimum(1e5)
-            #hStackSig.SetMaximum(100)      # signal plots normalized with cross-section and integrated luminosity
-            #hStackSig.SetMinimum(1e-7)
+            # hStackSig.SetMaximum(1e8)      # signal plots normalized with cross-section and integrated luminosity
+            hStackSig.SetMinimum(1e-4)
             #hStackSig.SetMaximum(1e9)      # background plots with unweighted events (100 000 total events)
             #hStackSig.SetMinimum(0)
             #hStackSig.SetMaximum(1e7)      # signal plots with unweighted events (50 000 total events)
@@ -439,8 +439,8 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
             #hStack.SetMinimum(0.00001)
             hStack.SetMaximum(1e30)     # background plots normalized with cross-section and integrated luminosity
             #hStack.SetMinimum(1e5)
-            #hStack.SetMaximum(100)      # signal plots normalized with cross-section and integrated luminosity
-            hStack.SetMinimum(1e-7)
+            # hStack.SetMaximum(1e8)      # signal plots normalized with cross-section and integrated luminosity
+            hStack.SetMinimum(1e-4)
             #hStack.SetMaximum(1e9)      # background plots with unweighted events (100 000 total events)
             #hStack.SetMinimum(0)
             #hStack.SetMaximum(1e7)      # signal plots with unweighted events (50 000 total events)
@@ -450,9 +450,11 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory, log
     else:
         if (not stacksig) and nbkg==0:
             hStackSig.SetMaximum(1.5*maxh)
+            # hStackSig.SetMaximum(0.5)
             hStackSig.SetMinimum(0.)
         else:
             hStack.SetMaximum(1.5*maxh)
+            # hStack.SetMaximum(0.5)
             hStack.SetMinimum(0.)
 
     if(nbkg>0):

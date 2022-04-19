@@ -28,9 +28,9 @@ process_list=[
     #'HNL_eenu_10GeV_0p1Ve',
 
     'HNL_eenu_5GeV_1e-4Ve',
-    'HNL_eenu_10GeV_1e-4Ve',
-    'HNL_eenu_30GeV_1e-4Ve',
-    'HNL_eenu_50GeV_1e-5Ve',
+    # 'HNL_eenu_10GeV_1e-4Ve',
+    # 'HNL_eenu_30GeV_1e-4Ve',
+    # 'HNL_eenu_50GeV_1e-5Ve',
 
     # 'HNL_eenu_20GeV_0p1Ve_withBothAntiNu',
     # 'HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2',
@@ -270,6 +270,8 @@ variables = {
     "RecoElectronTrack_absZ0sig_prompt":   {"name":"RecoElectronTrack_absZ0sig",  "title":"Reco electron tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
     "RecoElectronTrack_D0cov":      {"name":"RecoElectronTrack_D0cov",     "title":"Reco electron tracks d_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
     "RecoElectronTrack_Z0cov":      {"name":"RecoElectronTrack_Z0cov",     "title":"Reco electron tracks z_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
+
+    "RecoElectrons_deltaR":   {"name":"RecoElectrons_DeltaR",   "title":"Reco #Delta R(ee)",           "bin":100,"xmin":0, "xmax":10},
 
     "RecoPhoton_e":        {"name":"RecoPhoton_e",        "title":"Reco photon energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
     "RecoPhoton_p":        {"name":"RecoPhoton_p",        "title":"Reco photon p [GeV]",      "bin":100,"xmin":0 ,"xmax":50},

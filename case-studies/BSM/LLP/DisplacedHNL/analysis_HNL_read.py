@@ -312,13 +312,7 @@ class analysis():
                 .Define("GenHNL_epipigamma_invMass", "return sqrt(GenHNL_epipigamma_energy*GenHNL_epipigamma_energy - GenHNL_epipigamma_px*GenHNL_epipigamma_px - GenHNL_epipigamma_py*GenHNL_epipigamma_py - GenHNL_epipigamma_pz*GenHNL_epipigamma_pz )")
 
                 # Delta R between the two GenHNLElectrons:
-                .Define("GenHNLElectrons_deltaR", "MCParticle::DeltaRBetweenTwoMCParticles(GenHNLElectron,GenHNLElectron2)")
-                .Define()
-                .Define("GenHNLElectrons_deltaR1", "MCParticle::DeltaRBetweenTwoMCParticles1(GenHNLElectron,GenHNLElectron2)")
-                .Define("GenHNLElectrons_deltaR1", "MCParticle::DeltaRBetweenTwoMCParticles1(GenHNLElectron,GenHNLElectron2)")
-                .Define("GenHNLElectrons_delta_eta", "return abs(GenHNLElectron2_eta-GenHNLElectron_eta)")
-                .Define("GenHNLElectrons_delta_theta", "return abs(GenHNLElectron2_theta-GenHNLElectron_theta)")
-                .Define("GenHNLElectrons_deltaR_2", "return sqrt(GenHNLElectrons_delta_eta*GenHNLElectrons_delta_eta + GenHNLElectrons_delta_theta*GenHNLElectrons_delta_theta)")
+                .Define("GenHNLElectrons_deltaR", "MCParticle::DeltaRBetweenTwoMCParticles(GenHNLElectron.at(0),GenHNLElectron2.at(0))")
 
                 # Vertexing studies
                 # Finding the vertex of the mother particle HNL using decicated Bs method
@@ -434,14 +428,7 @@ class analysis():
                 .Define("GenMinusRecoHNL_Lxy", "GenHNL_Lxy-RecoHNL_Lxy")
                 .Define("GenMinusRecoHNL_Lxyz", "GenHNL_Lxyz-RecoHNL_Lxyz")
 
-                .Define("RecoHNLElectrons_deltaR", "ReconstructedParticle::DeltaRBetweenTwoMCParticles(RecoHNLElectron,RecoHNLElectron2)")
-                .Define("RecoHNLElectrons_deltaR_test", "ReconstructedParticle::DeltaRBetweenTwoMCParticles(RecoHNLElectron_test,RecoHNLElectron2_test)")
-
-                .Define("RecoElectron0", "ReconstructedParticle::sel_byIndex(0,RecoHNLElectron)")
-                .Define("RecoElectron1", "ReconstructedParticle::sel_byIndex(0,RecoHNLElectron2)")
-                # .Define("RecoHNLElectrons_deltaR1", "ReconstructedParticle::DeltaRBetweenTwoMCParticles1(RecoHNLElectron,RecoHNLElectron2)")
-
-                .Define("RecoHNLElectrons_DeltaR_diff", "return RecoHNLElectrons_deltaR-RecoHNLElectrons_deltaR_test")
+                .Define("RecoHNLElectrons_deltaR", "if (n_RecoHNLElectrons>1) return (ReconstructedParticle::DeltaRBetweenTwoMCParticles(RecoHNLElectron.at(0),RecoHNLElectron2.at(0))); else return float(-1.)")
                 
                        
                 ####################################################################################################
@@ -510,6 +497,9 @@ class analysis():
                 .Define("RecoElectronTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoElectrons,EFlowTrack_1))")
                 .Define("RecoElectronTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoElectrons,EFlowTrack_1)") #variance (not sigma)
                 .Define("RecoElectronTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoElectrons,EFlowTrack_1)")
+
+                #DeltaR for two first reconstructed electrons independend on HNL decay product matching
+                .Define("RecoElectrons_DeltaR", "if (n_RecoElectrons>1) return (ReconstructedParticle::DeltaRBetweenTwoMCParticles(RecoElectrons.at(0), RecoElectrons.at(1))); else return float(-1.)") 
 
                 .Define("RecoPhoton_e",      "ReconstructedParticle::get_e(RecoPhotons)")
                 .Define("RecoPhoton_p",      "ReconstructedParticle::get_p(RecoPhotons)")
@@ -642,8 +632,6 @@ class analysis():
                         "GenHNL_Lxyz_boost",
                         "GenHNL_Lxy_boost",
                         "GenHNLElectrons_deltaR",
-                        "GenHNLElectrons_deltaR1",
-                        "GenHNLElectrons_deltaR_2",
                         ######## Reconstructed particles #######
                         "n_RecoTracks",
                         "RecoHNLParticles",
@@ -662,9 +650,6 @@ class analysis():
                         "RecoHNL_Lxy",
                         "RecoHNL_Lxyz",
                         "RecoHNLElectrons_deltaR",
-                        "RecoHNLElectrons_deltaR_test",
-                        "RecoHNLElectrons_deltaR1",
-                        "RecoHNLElectrons_DeltaR_diff",
                         "RecoHNLElectron_e",
                         "RecoHNLElectron_p",
                         "RecoHNLElectron_pt",
@@ -737,6 +722,7 @@ class analysis():
                         "RecoElectronTrack_absZ0sig",
                         "RecoElectronTrack_D0cov",
                         "RecoElectronTrack_Z0cov",
+                        "RecoElectrons_DeltaR",
                         "RecoMuon_e",
                         "RecoMuon_p",
                         "RecoMuon_pt",

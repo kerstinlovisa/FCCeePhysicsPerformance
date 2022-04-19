@@ -260,6 +260,7 @@ variables = [
     "RecoHNL_ee_invMass",
 
     "RecoHNLElectrons_deltaR",
+    "RecoElectrons_deltaR",
 
     #gen-reco
     "GenMinusRecoHNLElectron_e",
