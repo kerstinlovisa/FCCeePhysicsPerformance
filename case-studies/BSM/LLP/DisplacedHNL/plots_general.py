@@ -64,6 +64,7 @@ variables = [
     "FSGen_Lxy",
     "FSGen_Lxyz",
     "FSGen_Lxyz_prompt",
+    "FSGen_DeltaR",
 
     "FSGen_ee_invMass",
     "FSGen_eenu_invMass",
@@ -127,6 +128,7 @@ variables = [
     "Reco_Lxy",
     "Reco_Lxyz",
     "Reco_Lxyz_prompt",
+    "Reco_DeltaR",
 
     "Reco_ee_invMass",
 

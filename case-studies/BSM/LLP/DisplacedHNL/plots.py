@@ -126,6 +126,8 @@ variables = [
     "GenHNL_ee_invMass",
     "GenHNL_eenu_invMass",
 
+    "GenHNLElectrons_deltaR",
+
     #reco variables
     "n_RecoTracks",
     "n_RecoHNLTracks",
@@ -256,6 +258,9 @@ variables = [
     "RecoMissingEnergy_phi",
 
     "RecoHNL_ee_invMass",
+
+    "RecoHNLElectrons_deltaR",
+    "RecoElectrons_deltaR",
 
     #gen-reco
     "GenMinusRecoHNLElectron_e",
