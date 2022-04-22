@@ -1,0 +1,16 @@
+export RUN_DIR=$PWD
+cd /afs/cern.ch/work/j/jalimena/FCCeeLLP/delphes
+export EOS_MGM_URL="root://eosuser.cern.ch"
+export LD_LIBRARY_PATH=$PWD/install/lib:$LD_LIBRARY_PATH
+export CMAKE_PREFIX_PATH=$PWD/install:$CMAKE_PREFIX_PATH
+export DELPHES_DIR=$PWD/install
+cd ../k4simdelphes
+export LD_LIBRARY_PATH=$PWD/install/lib64:$LD_LIBRARY_PATH
+export PATH=$PWD/install/bin:$PATH
+
+cd /afs/cern.ch/work/j/jalimena/FCCeeLLP/FCCAnalyses
+source ./setup.sh
+cd ../FCCeePhysicsPerformance/case-studies/flavour/dataframe
+source ./localSetup.sh
+
+cd $RUN_DIR

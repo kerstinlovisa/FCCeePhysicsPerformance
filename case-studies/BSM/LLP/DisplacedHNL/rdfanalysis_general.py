@@ -1,6 +1,12 @@
 #Mandatory: List of processes
 processList = {
-        'p8_ee_Zee_ecm91':{'fraction':0.1, 'chunks':10},
+        'p8_ee_Zee_ecm91':{'chunks':100},
+        'p8_ee_Zbb_ecm91':{'chunks':100},
+        'p8_ee_Ztautau_ecm91':{'chunks':100},
+        'p8_ee_Zuds_ecm91':{'chunks':100},
+        'p8_ee_Zcc_ecm91':{'chunks':100},
+
+        #other examples:
         #'p8_ee_ZZ_ecm240':{},#Run the full statistics in one output file named <outputDir>/p8_ee_ZZ_ecm240.root
         #'p8_ee_WW_ecm240':{'fraction':0.5, 'chunks':2}, #Run 50% of the statistics in two files named <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
         #'p8_ee_ZH_ecm240':{'fraction':0.2, 'output':'p8_ee_ZH_ecm240_out'} #Run 20% of the statistics in one file named <outputDir>/p8_ee_ZH_ecm240_out.root (example on how to change the output name)
@@ -12,6 +18,9 @@ prodTag     = "FCCee/spring2021/IDEA/"
 #Optional: output directory, default is local dir
 outputDir = "./read_EDM4HEP/"
 
+outputDirEos = "/eos/user/j/jalimena/FCCeeLLP/"
+eosType = "eosuser"
+
 #Optional: ncpus, default is 4
 #nCPUS       = 8 #can use for local running
 nCPUS       = 4 #better for batch running
@@ -19,6 +28,9 @@ nCPUS       = 4 #better for batch running
 #Optional running on HTCondor, default is False
 #runBatch    = False
 runBatch    = True
+
+#Optional config if you need for batch running
+userBatchConfig="/afs/cern.ch/work/j/jalimena/FCCeeLLP/FCCeePhysicsPerformance/case-studies/BSM/LLP/DisplacedHNL/myBatchConfig.txt"
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "longlunch"
