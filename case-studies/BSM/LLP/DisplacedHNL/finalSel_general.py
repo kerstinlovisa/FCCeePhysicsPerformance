@@ -20,6 +20,8 @@ process_list=[
     # 'HNL_eenu_20GeV_3e-5Ve',
     # 'HNL_eenu_30GeV_1e-5Ve',
     # 'HNL_eenu_50GeV_6e-6Ve',
+    'HNL_eenu_70GeV_1p41e-6Ve',
+    #'HNL_eenu_90GeV_1p41e-6Ve',
 
     'HNL_eenu_10GeV_2e-4Ve',
     'HNL_eenu_20GeV_9e-5Ve',

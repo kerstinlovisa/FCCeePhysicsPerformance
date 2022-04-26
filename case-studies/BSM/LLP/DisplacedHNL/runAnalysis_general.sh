@@ -4,11 +4,11 @@
 
 ########################################################### backgrounds ######################################################################
 # spring2021 samples
-python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/spring2021/IDEA/p8_ee_Zee_ecm91/events_199283914.root -o ./read_EDM4HEP/Zee/
-python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/spring2021/IDEA/p8_ee_Zbb_ecm91/events_199984817.root -o ./read_EDM4HEP/Zbb/
-python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/spring2021/IDEA/p8_ee_Ztautau_ecm91/events_198604879.root -o ./read_EDM4HEP/Ztautau/
-python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/spring2021/IDEA/p8_ee_Zuds_ecm91/events_199878624.root -o ./read_EDM4HEP/Zuds/
-python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/spring2021/IDEA/p8_ee_Zcc_ecm91/events_199973752.root -o ./read_EDM4HEP/Zcc/
+#python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/spring2021/IDEA/p8_ee_Zee_ecm91/events_199283914.root -o ./read_EDM4HEP/Zee/
+#python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/spring2021/IDEA/p8_ee_Zbb_ecm91/events_199984817.root -o ./read_EDM4HEP/Zbb/
+#python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/spring2021/IDEA/p8_ee_Ztautau_ecm91/events_198604879.root -o ./read_EDM4HEP/Ztautau/
+#python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/spring2021/IDEA/p8_ee_Zuds_ecm91/events_199878624.root -o ./read_EDM4HEP/Zuds/
+#python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/spring2021/IDEA/p8_ee_Zcc_ecm91/events_199973752.root -o ./read_EDM4HEP/Zcc/
 
 # dev samples
 #python3 analysis_general.py -i /eos/experiment/fcc/ee/generation/DelphesEvents/dev/IDEA/p8_ee_Zee_ecm91/events_195988098.root -o ./read_EDM4HEP/Zee/
@@ -30,3 +30,6 @@ python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_file
 python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_20GeV_3e-5Ve.root
 python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_30GeV_1e-5Ve.root
 python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_50GeV_6e-6Ve.root
+python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_40GeV_1e-5Ve.root
+python3 analysis_general.py -i /afs/cern.ch/user/l/lrygaard/public/HNL_root_files/HNL_eenu_30GeV_1e-5Ve.root
+
