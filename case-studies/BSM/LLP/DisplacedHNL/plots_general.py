@@ -194,16 +194,16 @@ selections['HNL']  = [
 ]
 
 extralabel = {}
-extralabel['selNone'] = "No selection"
-# extralabel['sel1FSGenEle'] = "Selection: At least 1 final state gen electron"
-# extralabel['sel1FSGenEle_eeInvMassGt80'] = "Selection: At least 1 final state gen electron, gen ee inv mass > 80 GeV"
-# extralabel['sel1FSGenNu'] = "Selection: At least 1 final state gen neutrino"
-extralabel['sel2RecoEle'] = "Selection: Exactly 2 reco electrons"
-extralabel['sel2RecoEle_vetoes'] = "Selection: Exactly 2 reco electrons; No reco muons, jets, or photons"
-# extralabel['sel2RecoEle_absD0Gt0p1'] = "Selection: Exactly 2 reco electrons with |d_0|>0.1 mm"
-extralabel['sel2RecoEle_vetoes_MissingEnergyGt10'] = "Selection: Exactly 2 reco electrons; No reco muons, jets, or photons; Missing energy > 10 GeV"
-# extralabel['sel2RecoEle_vetoes_absD0Gt0p5'] = "Selection: Exactly 2 reco electrons with |d_0|>0.1 mm; No reco muons, jets, or photons"
-extralabel['sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5'] = "Selection: Exactly 2 reco electrons with |d_0|>0.5 mm; No reco muons, jets, or photons; Missing energy > 10 GeV"
+extralabel['selNone'] = "Before selection"
+# extralabel['sel1FSGenEle'] = "At least 1 final state gen electron"
+# extralabel['sel1FSGenEle_eeInvMassGt80'] = "At least 1 final state gen electron, gen ee inv mass > 80 GeV"
+# extralabel['sel1FSGenNu'] = "At least 1 final state gen neutrino"
+extralabel['sel2RecoEle'] = "2 electrons"
+extralabel['sel2RecoEle_vetoes'] = "2 electrons; No muons, jets, or photons"
+# extralabel['sel2RecoEle_absD0Gt0p1'] = "2 electrons with |d_0|>0.1 mm"
+extralabel['sel2RecoEle_vetoes_MissingEnergyGt10'] = "2 electrons; No muons, jets, or photons; Missing momentum > 10 GeV"
+# extralabel['sel2RecoEle_vetoes_absD0Gt0p5'] = "2 electrons with |d_0|>0.1 mm; No muons, jets, or photons"
+extralabel['sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5'] = "2 electrons with |d_0|>0.5 mm; No muons, jets, or photons; Missing momentum > 10 GeV"
 
 colors = {}
 # colors['HNL_eenu_30GeV_1p41e-6Ve'] = ROOT.kOrange+1
@@ -216,38 +216,43 @@ colors = {}
 # colors['HNL_eenu_20GeV_3e-5Ve'] = ROOT.kRed
 # colors['HNL_eenu_30GeV_1e-5Ve'] = ROOT.kGreen+1
 # colors['HNL_eenu_50GeV_6e-6Ve'] = ROOT.kOrange+1
+#colors['HNL_eenu_30GeV_1e-5Ve'] = ROOT.kGreen+1
 
+colors['HNL_eenu_30GeV_1p41e-6Ve'] = ROOT.kOrange+1
+# colors['HNL_eenu_50GeV_1p41e-6Ve'] = ROOT.kRed
+colors['HNL_eenu_70GeV_1p41e-6Ve'] = ROOT.kBlue
+#colors['HNL_eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+1
+colors['Zbb'] = ROOT.kAzure-4
+colors['Zcc'] = ROOT.kCyan-9
+colors['Zuds'] = ROOT.kViolet-4
+colors['Ztautau'] = ROOT.kRed-3
 colors['Zee'] = ROOT.kGray+2
 #colors['Zee_dev'] = ROOT.kRed
 #colors['test_Zee_for_Juliette'] = ROOT.kBlue
 #colors['test_Zee_for_Juliette_v2'] = ROOT.kMagenta
-colors['Zbb'] = ROOT.kAzure-4
-colors['Ztautau'] = ROOT.kRed-3
-colors['Zcc'] = ROOT.kCyan-9
-colors['Zuds'] = ROOT.kViolet-4
 
 plots = {}
 plots['HNL'] = {'signal':{
-                    # 'HNL_eenu_30GeV_1p41e-6Ve':['HNL_eenu_30GeV_1p41e-6Ve'],
+                     'HNL_eenu_30GeV_1p41e-6Ve':['HNL_eenu_30GeV_1p41e-6Ve'],
                     # 'HNL_eenu_50GeV_1p41e-6Ve':['HNL_eenu_50GeV_1p41e-6Ve'],
-                    # 'HNL_eenu_70GeV_1p41e-6Ve':['HNL_eenu_70GeV_1p41e-6Ve'],
+                     'HNL_eenu_70GeV_1p41e-6Ve':['HNL_eenu_70GeV_1p41e-6Ve'],
                     # 'HNL_eenu_90GeV_1p41e-6Ve':['HNL_eenu_90GeV_1p41e-6Ve'],
-
                     # 'HNL_eenu_10GeV_2e-4Ve':['HNL_eenu_10GeV_2e-4Ve'],
                     # 'HNL_eenu_20GeV_9e-5Ve':['HNL_eenu_20GeV_9e-5Ve'],
                     # 'HNL_eenu_20GeV_3e-5Ve':['HNL_eenu_20GeV_3e-5Ve'],
                     # 'HNL_eenu_30GeV_1e-5Ve':['HNL_eenu_30GeV_1e-5Ve'],
                     # 'HNL_eenu_50GeV_6e-6Ve':['HNL_eenu_50GeV_6e-6Ve'],
+                    #'HNL_eenu_30GeV_1e-5Ve':['HNL_eenu_30GeV_1e-5Ve'],
 },
                 'backgrounds':{
-                    'Zee':['p8_ee_Zee_ecm91'],
                     #'Zee_dev':['p8_ee_Zee_ecm91_dev'],
                     #'test_Zee_for_Juliette':['test_Zee_for_Juliette'],
                     #'test_Zee_for_Juliette_v2':['test_Zee_for_Juliette_v2'],
                     'Zbb':['p8_ee_Zbb_ecm91'],
-                    'Ztautau': ['p8_ee_Ztautau_ecm91'],
                     'Zcc': ['p8_ee_Zcc_ecm91'],
                     'Zuds': ['p8_ee_Zuds_ecm91'],
+                    'Ztautau': ['p8_ee_Ztautau_ecm91'],
+                    'Zee':['p8_ee_Zee_ecm91'],
                 }
                 }
 
@@ -264,11 +269,19 @@ legend = {}
 # legend['HNL_eenu_30GeV_1e-5Ve'] = 'm_{N} = 30 GeV, V_{e} = 1e-5'
 # legend['HNL_eenu_50GeV_6e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 6e-6'
 
-legend['Zee'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee'
+legend['HNL_eenu_30GeV_1p41e-6Ve'] = 'm_{N} = 30 GeV, |V_{eN}| = 1.41e-6'
+#legend['HNL_eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, |V_{eN}| = 1.41e-6'
+#legend['HNL_eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, |V_{eN}| = 1.41e-6'
+#legend['HNL_eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, |V_{eN}| = 1.41e-6'
+#legend['HNL_eenu_30GeV_1e-5Ve']  = 'm_{N} = 30 GeV, |V_{eN}| = 1e-5'
+legend['HNL_eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, |V_{eN}| = 1.41e-6'
+#legend['HNL_eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, |V_{eN}| = 1.41e-6'
+
 legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
-legend['Ztautau'] = 'e^{+}e^{-} #rightarrow Z #rightarrow #tau#tau'
 legend['Zcc'] = 'e^{+}e^{-} #rightarrow Z #rightarrow cc'
 legend['Zuds'] = 'e^{+}e^{-} #rightarrow Z #rightarrow uds'
+legend['Ztautau'] = 'e^{+}e^{-} #rightarrow Z #rightarrow #tau#tau'
+legend['Zee'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee'
 
 #legend['Zee'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee, spring 2021 sample'
 #legend['Zee_dev'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee, dev sample'

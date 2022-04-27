@@ -290,30 +290,29 @@ selections = {}
 # ] #,"sel0","sel1"]
 selections['HNL']  = [
     "selNone",
-    "sel1FSGenEle",
-    "sel1FSGenNu",
-    "sel2RecoEle",
-    "sel2RecoEle_vetoes",
-    "sel2RecoEle_absD0Gt0p1",
-    "sel2RecoEle_chi2Gt0p1",
-    "sel2RecoEle_vetoes_MissingEnergyGt10",
-    "sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5",
+    #"sel1FSGenEle",
+    #"sel1FSGenNu",
+    #"sel2RecoEle",
+    #"sel2RecoEle_vetoes",
+    #"sel2RecoEle_absD0Gt0p1",
+    #"sel2RecoEle_chi2Gt0p1",
+    #"sel2RecoEle_vetoes_MissingEnergyGt10",
+    #"sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5",
 ]
 
 extralabel = {}
-# extralabel['selNone'] = "No selection"
-# extralabel['sel0'] = "Selection: At least 1 N"
-# extralabel['sel1'] = "Selection: At least 1 N, at least 2 reco electrons"
-# extralabel['selGenLxyzGt500'] = "Selection: At least 1 N with gen L_{xyz}>50 cm"
+# extralabel['sel0'] = "At least 1 N"
+# extralabel['sel1'] = "At least 1 N, at least 2 electrons"
+# extralabel['selGenLxyzGt500'] = "At least 1 N with gen L_{xyz}>50 cm"
 extralabel['selNone'] = "No selection"
-extralabel['sel1FSGenEle'] = "Selection: At least 1 final state gen electron"
-extralabel['sel1FSGenNu'] = "Selection: At least 1 final state gen neutrino"
-extralabel['sel2RecoEle'] = "Selection: Exactly 2 reco electrons"
-extralabel['sel2RecoEle_vetoes'] = "Selection: Exactly 2 reco electrons; No reco muons, jets, or photons"
-extralabel['sel2RecoEle_absD0Gt0p1'] = "Selection: Exactly 2 reco electrons with |d_0|>0.1 mm"
-extralabel['sel2RecoEle_chi2Gt0p1'] = "Selection: Exactly 2 reco electrons with #chi^{2}>0.1"
-extralabel['sel2RecoEle_vetoes_MissingEnergyGt10'] = "Selection: Exactly 2 reco electrons; No reco muons, jets, or photons; Missing energy > 10 GeV"
-extralabel['sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5'] = "Selection: Exactly 2 reco electrons with |d_0|>0.5 mm; No reco muons, jets, or photons; Missing energy > 10 GeV"
+extralabel['sel1FSGenEle'] = "At least 1 final state gen electron"
+extralabel['sel1FSGenNu'] = "At least 1 final state gen neutrino"
+extralabel['sel2RecoEle'] = "2 electrons"
+extralabel['sel2RecoEle_vetoes'] = "2 electrons; No muons, jets, or photons"
+extralabel['sel2RecoEle_absD0Gt0p1'] = "2 electrons with |d_0|>0.1 mm"
+extralabel['sel2RecoEle_chi2Gt0p1'] = "2 electrons with #chi^{2}>0.1"
+extralabel['sel2RecoEle_vetoes_MissingEnergyGt10'] = "2 electrons; No muons, jets, or photons; Missing momentum > 10 GeV"
+extralabel['sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5'] = "2 electrons with |d_0|>0.5 mm; No muons, jets, or photons; Missing momentum > 10 GeV"
 
 colors = {}
 # colors['HNL_50'] = ROOT.kBlack
@@ -333,14 +332,13 @@ colors = {}
 # colors['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'] = ROOT.kCyan
 # colors['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = ROOT.kBlue
 
-
-colors['HNL_eenu_30GeV_1e-5Ve'] = ROOT.kGreen+1
-#colors['HNL_eenu_30GeV_1p41e-6Ve'] = ROOT.kBlack
+#colors['HNL_eenu_30GeV_1e-5Ve'] = ROOT.kGreen+1
+colors['HNL_eenu_30GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = ROOT.kBlack
 #colors['HNL_eenu_40GeV_1p41e-6Ve'] = ROOT.kRed
-#colors['HNL_eenu_50GeV_1p41e-6Ve'] = ROOT.kRed
-#colors['HNL_eenu_70GeV_1p41e-6Ve'] = ROOT.kGreen+2
+colors['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = ROOT.kRed
+colors['HNL_eenu_70GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = ROOT.kGreen+2
 #colors['HNL_eenu_90GeV_1p41e-6Ve'] = ROOT.kBlack
-#colors['HNL_eenu_90GeV_1p41e-6Ve'] = ROOT.kBlue
+colors['HNL_eenu_90GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = ROOT.kBlue
 #colors['Ztotautau'] = ROOT.kRed
 
 plots = {}
@@ -361,12 +359,16 @@ plots['HNL'] = {'signal':{
     # 'HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2'],
     # 'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu':['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'],
     # 'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'],
-    'HNL_eenu_30GeV_1e-5Ve':['HNL_eenu_30GeV_1e-5Ve'],
-    #'HNL_eenu_30GeV_1p41e-6Ve':['HNL_eenu_30GeV_1p41e-6Ve'],
-    #'HNL_eenu_40GeV_1p41e-6Ve':['HNL_eenu_40GeV_1p41e-6Ve'],
-    #'HNL_eenu_50GeV_1p41e-6Ve':['HNL_eenu_50GeV_1p41e-6Ve'],
-    #'HNL_eenu_70GeV_1p41e-6Ve':['HNL_eenu_70GeV_1p41e-6Ve'],
-    #'HNL_eenu_90GeV_1p41e-6Ve':['HNL_eenu_90GeV_1p41e-6Ve'],
+    #'HNL_eenu_30GeV_1e-5Ve':['HNL_eenu_30GeV_1e-5Ve'],
+    #'HNL_eenu_20GeV_0p1Ve_withBothAntiNu':['HNL_eenu_20GeV_0p1Ve_withBothAntiNu'],
+    #'HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2'],
+    #'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu':['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'],
+    #'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'],
+    'HNL_eenu_30GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_30GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'],
+    #'HNL_eenu_40GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_40GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'],
+    'HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'],
+    'HNL_eenu_70GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_70GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'],
+    'HNL_eenu_90GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2':['HNL_eenu_90GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'],
 },
                 'backgrounds':{
                     #'WW':['p8_ee_WW_ecm240'],
@@ -379,24 +381,28 @@ plots['HNL'] = {'signal':{
 legend = {}
 # legend['HNL_50']  = 'New'
 # legend['HNL_50_old']  = 'Old'
-#legend['HNL_eenu_40GeV_1e-3Ve']  = 'm_{N} = 40 GeV, V_{e} = 1e-3'
-#legend['HNL_eenu_40GeV_1e-4Ve']  = 'm_{N} = 40 GeV, V_{e} = 1e-4'
-#legend['HNL_eenu_40GeV_1e-5Ve']  = 'm_{N} = 40 GeV, V_{e} = 1e-5'
-#legend['HNL_eenu_5GeV_1p41e-6Ve']  = 'm_{N} = 5 GeV, V_{e} = 1.41e-6'
-#legend['HNL_eenu_10GeV_1p41e-6Ve'] = 'm_{N} = 10 GeV, V_{e} = 1.41e-6'
-#legend['HNL_eenu_10GeV_0p1Ve'] = 'm_{N} = 10 GeV, V_{e} = 0.1'
-#legend['HNL_eenu_12GeV_1p41e-6Ve'] = 'm_{N} = 12 GeV, V_{e} = 1.41e-6'
-#legend['HNL_eenu_15GeV_1p41e-6Ve'] = 'm_{N} = 15 GeV, V_{e} = 1.41e-6'
-#legend['HNL_eenu_20GeV_1p41e-6Ve'] = 'm_{N} = 20 GeV, V_{e} = 1.41e-6'
-#legend['HNL_eenu_20GeV_0p1Ve'] = 'm_{N} = 20 GeV, V_{e} = 0.1'
-# legend['HNL_eenu_20GeV_0p1Ve_withBothAntiNu'] = 'm_{N} = 20 GeV, V_{e} = 0.1, Delphes 3.4.2'
-# legend['HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 20 GeV, V_{e} = 0.1, Delphes 3.5.1.pre01'
-# legend['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6, Delphes 3.4.2'
-# legend['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6, Delphes 3.5.1.pre01'
-legend['HNL_eenu_30GeV_1e-5Ve'] = 'm_{N} = 30 GeV, V_{e} = 1e-5'
-#legend['HNL_eenu_30GeV_1p41e-6Ve'] = 'm_{N} = 30 GeV, V_{e} = 1.41e-6'
-#legend['HNL_eenu_40GeV_1p41e-6Ve'] = 'm_{N} = 40 GeV, V_{e} = 1.41e-6'
-#legend['HNL_eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6'
-#legend['HNL_eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, V_{e} = 1.41e-6'
-#legend['HNL_eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
+#legend['HNL_eenu_40GeV_1e-3Ve']  = 'm_{N} = 40 GeV, |V_{eN}| = 1e-3'
+#legend['HNL_eenu_40GeV_1e-4Ve']  = 'm_{N} = 40 GeV, |V_{eN}| = 1e-4'
+#legend['HNL_eenu_40GeV_1e-5Ve']  = 'm_{N} = 40 GeV, |V_{eN}| = 1e-5'
+#legend['HNL_eenu_5GeV_1p41e-6Ve']  = 'm_{N} = 5 GeV, |V_{eN}| = 1.41e-6'
+#legend['HNL_eenu_10GeV_1p41e-6Ve'] = 'm_{N} = 10 GeV, |V_{eN}| = 1.41e-6'
+#legend['HNL_eenu_10GeV_0p1Ve'] = 'm_{N} = 10 GeV, |V_{eN}| = 0.1'
+#legend['HNL_eenu_12GeV_1p41e-6Ve'] = 'm_{N} = 12 GeV, |V_{eN}| = 1.41e-6'
+#legend['HNL_eenu_15GeV_1p41e-6Ve'] = 'm_{N} = 15 GeV, |V_{eN}| = 1.41e-6'
+#legend['HNL_eenu_20GeV_1p41e-6Ve'] = 'm_{N} = 20 GeV, |V_{eN}| = 1.41e-6'
+#legend['HNL_eenu_20GeV_0p1Ve'] = 'm_{N} = 20 GeV, |V_{eN}| = 0.1'
+# legend['HNL_eenu_20GeV_0p1Ve_withBothAntiNu'] = 'm_{N} = 20 GeV, |V_{eN}| = 0.1, Delphes 3.4.2'
+# legend['HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 20 GeV, |V_{eN}| = 0.1, Delphes 3.5.1.pre01'
+# legend['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'] = 'm_{N} = 50 GeV, |V_{eN}| = 1.41e-6, Delphes 3.4.2'
+# legend['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 50 GeV, |V_{eN}| = 1.41e-6, Delphes 3.5.1.pre01'
+#legend['HNL_eenu_30GeV_1e-5Ve'] = 'm_{N} = 30 GeV, |V_{eN}| = 1e-5'
+#legend['HNL_eenu_20GeV_0p1Ve_withBothAntiNu'] = 'm_{N} = 20 GeV, |V_{eN}| = 0.1, Delphes 3.4.2'
+#legend['HNL_eenu_20GeV_0p1Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 20 GeV, |V_{eN}| = 0.1, Delphes 3.5.1.pre01'
+#legend['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu'] = 'm_{N} = 50 GeV, |V_{eN}| = 1.41e-6, Delphes 3.4.2'
+#legend['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 50 GeV, |V_{eN}| = 1.41e-6, Delphes 3.5.1.pre01'
+legend['HNL_eenu_30GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 30 GeV, |V_{eN}| = 1.41e-6'
+#legend['HNL_eenu_40GeV_1p41e-6Ve'] = 'm_{N} = 40 GeV, |V_{eN}| = 1.41e-6'
+legend['HNL_eenu_50GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 50 GeV, |V_{eN}| = 1.41e-6'
+legend['HNL_eenu_70GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 70 GeV, |V_{eN}| = 1.41e-6'
+legend['HNL_eenu_90GeV_1p41e-6Ve_withBothAntiNu_localDelphes_v2'] = 'm_{N} = 90 GeV, |V_{eN}| = 1.41e-6'
 #legend['Ztotautau'] = 'Z #rightarrow #tau#tau'
